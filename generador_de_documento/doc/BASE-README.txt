@@ -3,7 +3,7 @@ llamadas a la api y la creación del PDF.
 
 La creación del PDF se hace sobre FPDF ( http://www.fpdf.org/ ).
 
-
+-------------------------------------------------------------------------------------------------
 Comentarios sobre la instalación de FPDF:
 
 The FPDF library is made up of the following elements:
@@ -20,5 +20,14 @@ FPDF error: Could not include font definition file
 Remarks:
 
 - Only the files corresponding to the fonts actually used are necessary
+
+--------------------------------------------------------------------------------------------------
+
+Notas importantes!
+--- El programa debe estar sobre una instalación de APACHE con soporte para PHP 7.
+
+
+--------------------------------------------------------------------------------------------------
+
 
 
