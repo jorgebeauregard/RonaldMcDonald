@@ -38,20 +38,3 @@ class Child extends Model
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
