@@ -22,7 +22,6 @@ class CreateCompanionsTable extends Migration
             $table->enum('sex', ['Masculino', 'Femenino']);
             $table->unsignedInteger('relationship_id');
             $table->unsignedInteger('scholarship_id');
-            $table->unsignedInteger('child_id');
             $table->string('identification', 128);
             $table->timestamps();
             $table->enum('health_status', ['Sano', 'En tratamiento', 'Enfermo']);
@@ -41,7 +40,6 @@ class CreateCompanionsTable extends Migration
         Schema::table('children', function($table) {
             $table->foreign('relationship_id')->references('id')->on('relationships')->onUpdate('cascade');
             $table->foreign('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade');
-            $table->foreign('child_id')->references('id')->on('children')->onUpdate('cascade');
             $table->foreign('occupation_id')->references('id')->on('occupations')->onUpdate('cascade');
         });
     }
