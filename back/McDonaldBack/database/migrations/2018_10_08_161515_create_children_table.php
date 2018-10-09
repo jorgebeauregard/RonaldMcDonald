@@ -37,8 +37,8 @@ class CreateChildrenTable extends Migration
         });
 
         Schema::table('children', function($table) {
-            $table->foreign('scholarship_id')->references('id')->on('scholarships')->onDelete('cascade');
-            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->foreign('scholarship_id')->references('id')->on('scholarships')->onUpdate('cascade');
+            $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade');
         });
     }
     
