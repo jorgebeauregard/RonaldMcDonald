@@ -35,7 +35,13 @@ class CreateChildrenTable extends Migration
             $table->enum('min_wage', ['<1', '1 a 2', '>2']);
             $table->timestamps();
         });
+
+        Schema::table('children', function($table) {
+            $table->foreign('scholarship_id')->references('id')->on('scholarships')->onDelete('cascade');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+        });
     }
+    
 
     /**
      * Reverse the migrations.
