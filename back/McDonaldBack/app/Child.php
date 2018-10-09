@@ -28,13 +28,13 @@ class Child extends Model
         'min_wage'
     ];
 
-    public function sholarship(){
-        //Child has one scholarhip, my attribute sholarship_id references its id
-        return $this->hasOne('App\Scholarship','scholarship_id','id');
+    public function scholarhip(){
+        //Child has one scholarhip, its attribute id is referenced by scholarship_id
+        return $this->hasOne('App\Scholarship','id','scholarship_id');
     }
 
     public function state(){
-        return $this->hasOne('App\State','state_id','id');
+        return $this->hasOne('App\State','id','state_id');
     }
 
 }

@@ -9,4 +9,6 @@ class State extends Model
     protected $fillable = [
         'name',
     ];
+
+    //ADD  INVERSE RELATIONSHIPS
 }
