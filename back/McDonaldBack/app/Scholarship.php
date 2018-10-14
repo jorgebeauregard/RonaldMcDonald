@@ -29,7 +29,7 @@ class Scholarship extends Model
         return $this->belongsTo('App\Child','id','scholarship_id');
     }
 
-    public function companions(){
+    public function companion(){
         return $this->belongsTo('App\Companion','id','scholarship_id');
     }
 }

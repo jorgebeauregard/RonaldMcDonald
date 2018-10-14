@@ -2,17 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Hospital extends Model
-{
+
+class CompanionCheckIn extends Pivot
+{   
     protected $fillable = [
-        'name',
+        'companion_id',
+        'check_in_id',
+        'relationship_id'
     ];
 
     //Relationship
         //One to one
-            //hasSomething('App\Model','his_key','my_key');
+            //hasOne('App\Model','his_key','my_key');
         //One to many
             //hasMany('App\Model','his_key','my_key');
         //Many to many
@@ -25,6 +28,7 @@ class Hospital extends Model
         //One to many  
             //belongsTo('App\Model','my_key','his_key');
     
-   
-
+    public function relationship(){
+        return $this->hasOne('App\Relationship','id','relationship_id');
+    }
 }
