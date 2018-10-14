@@ -17,7 +17,7 @@ class CreateChildrenTable extends Migration
             $table->increments('id');
             $table->string('names', 128);
             $table->string('flast_name', 128);
-            $table->string('mlast_name', 128);
+            $table->string('mlast_name', 128)->nullable();
             $table->date('birthday');
             $table->enum('sex', ['Masculino', 'Femenino']);
             $table->unsignedInteger('scholarship_id');
