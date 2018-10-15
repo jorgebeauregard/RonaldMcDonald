@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\CheckIn;
 
 class Companion extends Model
 {
@@ -28,7 +27,16 @@ class Companion extends Model
         'remarks'
     ];
 
-
+    //Side not: Laravel documentation NEVER SAID ANYTHING ABOUT THIS FUCKING LINES NEEDED TO BE ADDED
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
+        if ($parent instanceof CheckIn) {
+            //For some weird fucking reason both of these work...god save laravel
+            return CheckInCompanion::fromRawAttributes($parent,$attributes, $table, $exists);
+            //return new CheckInCompanion                       ($attributes, $table, $exists, $using = null);
+            
+        }
+        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
+    }
     //Relationship
         //One to one
             //hasSomething('App\Model','his_key','my_key');
@@ -53,17 +61,7 @@ class Companion extends Model
         return $this->belongsToMany('App\CheckIn')->using('App\CheckInCompanion');
     }
 
-    //Side not: Laravel documentation NEVER SAID ANYTHING ABOUT THIS FUCKING LINES NEEDED TO BE ADDED
-    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
-        if ($parent instanceof CheckIn) {
-            return new CheckInCompanion($attributes, $table, $exists,$using = null);
-            //For some weird fucking reason both of these work...god save laravel
-            //return CheckInCompanion::fromRawAttributes($parent,$attributes, $table, $exists);
-            //return new CheckInCompanion                       ($attributes, $table, $exists, $using = null);
-            
-        }
-        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
-    }
+    
 }
 /*
 if ($parent instanceof User){

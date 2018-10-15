@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Companion;
+
 class CheckIn extends Model
 {
     protected $fillable = [
@@ -22,6 +22,15 @@ class CheckIn extends Model
         'remarks',
         'assigned_room'
     ];
+
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
+        if ($parent instanceof Companion) {
+            //For some weird fucking reason both of these work...god save laravel
+            //return CheckInCompanion::fromRawAttributes($parent,$attributes, $table, $exists);
+            return new CheckInCompanion($attributes, $table, $exists, $using = null);
+        }
+        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
+    }
 
     //Relationship
         //One to one
@@ -59,10 +68,5 @@ class CheckIn extends Model
         return $this->belongsToMany('App\Companion')->using('App\CheckInCompanion');
     }
 
-    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
-        if ($parent instanceof Companion) {
-            return new CheckInCompanion($attributes, $table, $exists,$using = null);
-        }
-        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
-    }
+
 }
