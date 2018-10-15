@@ -27,6 +27,7 @@ class Companion extends Model
         'remarks'
     ];
 
+    //This might not be necessary at all
     //Side not: Laravel documentation NEVER SAID ANYTHING ABOUT THIS FUCKING LINES NEEDED TO BE ADDED
     public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
         if ($parent instanceof CheckIn) {

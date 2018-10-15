@@ -23,6 +23,7 @@ class CheckIn extends Model
         'assigned_room'
     ];
 
+    //This might not be necessary at all
     public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
         if ($parent instanceof Companion) {
             //For some weird fucking reason both of these work...god save laravel
