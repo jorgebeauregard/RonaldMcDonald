@@ -25,5 +25,8 @@ class DatabaseSeeder extends Seeder
 
         //Dependent
         $this->call(ChildrenTableSeeder::class);
+        $this->call(CheckInsTableSeeder::class);
+        $this->call(CompanionsTableSeeder::class);
+        $this->call(CheckInCompanionTableSeeder::class);
     }
 }

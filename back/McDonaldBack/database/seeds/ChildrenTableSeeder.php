@@ -13,27 +13,6 @@ class ChildrenTableSeeder extends Seeder
      */
     public function run()
     {
-         /*
-            string('names', 128);
-            string('flast_name', 128);
-            string('mlast_name', 128);
-            date('birthday');
-            enum('sex', ['Masculino', 'Femenino']);
-            unsignedInteger('scholarship_id');
-            string('address_street', 128);
-            string('address_number', 128);
-            string('neighborhood', 128);
-            string('locality', 128);
-            string('municipality', 128);
-            string('zip_code', 8);
-            unsignedInteger('state_id');
-            string('phone_1', 16);
-            string('phone_2', 16);
-            enum('social', ['1','2','3','4','5','6']);
-            enum('zone_type', ['Rural', 'Sub-urbana', 'Urbana']);
-            enum('min_wage', ['<1', '1 a 2', '>2']);
-            timestamps();
-            */
         DB::table('children')->insert([
             'names' => "Jorge Alberto",
             'flast_name' => "Beauregard",

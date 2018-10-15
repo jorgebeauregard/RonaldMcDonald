@@ -26,7 +26,7 @@ class CreateCheckInsTable extends Migration
             $table->unsignedInteger('diet_id');
             $table->unsignedInteger('social_worker_id');
             $table->boolean('re_entry');
-            $table->date('check_out_date');
+            $table->date('check_out_date')->nullable();
             $table->unsignedInteger('additional_children');
             $table->text('remarks');
             $table->text('assigned_room');

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Companion;
 class CheckIn extends Model
 {
     protected $fillable = [
@@ -54,7 +54,15 @@ class CheckIn extends Model
         return $this->hasOne('App\Treatment','id','treatment_id');
     }
 
+
     public function companions(){
-        return $this->belongsToMany('App\Companion')->using('App\CompanionCheckIn');
+        return $this->belongsToMany('App\Companion')->using('App\CheckInCompanion');
+    }
+
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
+        if ($parent instanceof Companion) {
+            return new CheckInCompanion($attributes, $table, $exists,$using = null);
+        }
+        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
     }
 }

@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanionCheckInTable extends Migration
+class CreateCheckInCompanionTable extends Migration
+
 {
     /**
      * Run the migrations.
@@ -13,7 +14,7 @@ class CreateCompanionCheckInTable extends Migration
      */
     public function up()
     {
-        Schema::create('companion_check_in', function (Blueprint $table) {
+        Schema::create('check_in_companion', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('companion_id');
             $table->unsignedInteger('check_in_id');
@@ -21,7 +22,7 @@ class CreateCompanionCheckInTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('companion_check_in', function($table) {
+        Schema::table('check_in_companion', function($table) {
             $table->foreign('companion_id')->references('id')->on('companions')->onUpdate('cascade');
             $table->foreign('check_in_id')->references('id')->on('check_ins')->onUpdate('cascade');
             $table->foreign('relationship_id')->references('id')->on('relationships')->onUpdate('cascade');
@@ -35,6 +36,6 @@ class CreateCompanionCheckInTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companion_check_in');
+        Schema::dropIfExists('check_in_companion');
     }
 }

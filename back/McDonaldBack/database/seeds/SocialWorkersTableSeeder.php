@@ -72,12 +72,6 @@ class SocialWorkersTableSeeder extends Seeder
         ]);
 
         DB::table('social_workers')->insert([
-            'names'=> "",
-            'flast_name'=> "",
-            'mlast_name'=> "",
-        ]);
-
-        DB::table('social_workers')->insert([
             'names'=> "María Lucrecia",
             'flast_name'=> "Flores",
             'mlast_name'=> "",

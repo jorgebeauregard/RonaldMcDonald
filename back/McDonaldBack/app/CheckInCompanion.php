@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-
-class CompanionCheckIn extends Pivot
+class CheckInCompanion extends Pivot
 {   
     protected $fillable = [
         'companion_id',
@@ -28,7 +27,11 @@ class CompanionCheckIn extends Pivot
         //One to many  
             //belongsTo('App\Model','my_key','his_key');
     
-    public function relationship(){
-        return $this->hasOne('App\Relationship','id','relationship_id');
-    }
+   // public function relationship(){
+   //     return $this->hasOne('App\Relationship','id','relationship_id');
+   // }
+
+   public function hola(){
+       return 1;
+   }
 }
