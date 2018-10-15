@@ -7,79 +7,25 @@ use Illuminate\Http\Request;
 
 class CompanionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function create(Request $request){
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function read(Request $request){
+        if($request->id == null){
+            return Companion::get();
+        }
+        else{
+            $id = ((int)($request->id));
+            return Companion::find($id);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function update(Request $request){
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Companion  $companion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Companion $companion)
-    {
-        //
-    }
+    public function delete(Request $request){
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Companion  $companion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Companion $companion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Companion  $companion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Companion $companion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Companion  $companion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Companion $companion)
-    {
-        //
     }
 }

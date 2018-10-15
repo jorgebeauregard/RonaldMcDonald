@@ -7,79 +7,19 @@ use Illuminate\Http\Request;
 
 class OccupationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function create(Request $request){
+
+    }
+
+    public function read(Request $request){
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function update(Request $request){
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function delete(Request $request){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Occupation  $occupation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Occupation $occupation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Occupation  $occupation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Occupation $occupation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Occupation  $occupation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Occupation $occupation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Occupation  $occupation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Occupation $occupation)
-    {
-        //
     }
 }
