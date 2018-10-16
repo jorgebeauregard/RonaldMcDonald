@@ -1,6 +1,9 @@
 <?php 
+
+    require_once('masterVars.php');
+
     /*
-        getcheck()
+        getCheck()
         El punto de entrada del check de argumentos. 
         Los argumentos son:
         Mediante GET 
@@ -26,11 +29,26 @@
         {
             $dataExists = false;
         }
+
+        return $dataExists;
     }
 
+    /*
+        validDate regresa la fecha en formato correcto (unix time)
+        o falla.
+    */
     function validDate($date)
     {
         $convertedDate = strtotime($date);
-
+        
+        if($convertedDate !== false)
+        {
+            return $convertedDate;
+        }else
+        {
+            showError("Fecha en formato incorrecto");
+        }
     }
+
+
 ?>
