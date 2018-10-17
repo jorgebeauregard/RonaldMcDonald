@@ -2,6 +2,10 @@
 
     require_once('fpdf.php');
     require_once('check.php');
+    require_once('masterVars.php');
+
+    $verbose = 0;
+
     /* 
         Generador de reportes.
         Genera un pdf, conteniendo estadísticas globales pertinientes entre 2 fechas.
@@ -9,11 +13,41 @@
         Estas 2 fechas son proporcionadas a traves de GET. Para mas información, ver
         getCheck() dentro de check.php
 
-        --Aviso de Código--
-        BASE. Este programa fue obtenido directamente de la documentacion de FPDF
-        El mismo ha sido modificado parcialmente.
+        The code uses a FAILFAST design.
+
     */
     
+    //Checa los argumentos.
+    if (getCheck() == false)
+    {
+        showError($error_check);
+    }else
+    {
+        if ($verbose)
+        {
+            $d1 = $_GET["start_date"]; 
+            $d2 = $_GET["end_date"];
+            
+            echo($d1."<br>");
+            echo($d2."<br>");
+            
+            echo(validDate($d1)."<br>");
+            echo(validDate($d2)."<br>");
+
+            $d1 = validDate($d1);
+            $d2 = validDate($d2);
+
+            echo(date("Y-m-d h:i:sa", $d1)."<br>");
+            echo(date("Y-m-d h:i:sa", $d2)."<br>");
+        }
+    }
+
+    //Obtain dates.
+    $startDate = validDate($_GET["start_date"]);
+    $endDate = validDate($_GET["end_date"]);
+
+
+    //Creación de la clase principal para generar los PDFs
     class PDF extends FPDF
     {
         //header de la pagina
@@ -44,6 +78,9 @@
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $pdf->SetFont('Times','',12);
+
+    $pdf->Cell(0,10,utf8_decode("Desde: ".date("Y-m-d", $startDate)),0,0,'L');
+    $pdf->Cell(0,10,utf8_decode("Hasta: ".date("Y-m-d", $endDate)),0,1,'R');
 
     for($i=1;$i<=120;$i++)
     {
