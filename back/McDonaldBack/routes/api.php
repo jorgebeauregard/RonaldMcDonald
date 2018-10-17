@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Child
 Route::post('/children',     'ChildController@create'); //C
-Route::get('/children',      'ChildController@read');   //R
+Route::get('/children',['middleware' => 'cors'],'ChildController@read');   //R
 Route::get('/children/{id}', 'ChildController@read');   //R
 Route::put('/children',      'ChildController@update'); //U
 Route::delete('/children',   'ChildController@delete'); //D
