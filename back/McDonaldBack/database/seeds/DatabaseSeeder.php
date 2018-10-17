@@ -22,11 +22,15 @@ class DatabaseSeeder extends Seeder
         $this->call(DietsTableSeeder::class);
         $this->call(SocialWorkersTableSeeder::class);
         $this->call(TreatmentsTableSeeder::class);
+        $this->call(DoctorsTableSeeder::class);
+        $this->call(RoomsTableSeeder::class);
 
         //Dependent
         $this->call(ChildrenTableSeeder::class);
         $this->call(CheckInsTableSeeder::class);
         $this->call(CompanionsTableSeeder::class);
         $this->call(CheckInCompanionTableSeeder::class);
+        $this->call(ChildCompanionTableSeeder::class);
+        $this->call(CheckInRoomTableSeeder::class);
     }
 }

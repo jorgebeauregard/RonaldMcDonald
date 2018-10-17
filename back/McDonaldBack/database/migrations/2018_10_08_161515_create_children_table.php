@@ -29,7 +29,7 @@ class CreateChildrenTable extends Migration
             $table->string('zip_code', 8);
             $table->unsignedInteger('state_id');
             $table->string('phone_1', 16);
-            $table->string('phone_2', 16);
+            $table->string('phone_2', 16)->nullable();
             $table->enum('social', ['1','2','3','4','5','6']);
             $table->enum('zone_type', ['Rural', 'Sub-urbana', 'Urbana']);
             $table->enum('min_wage', ['<1', '1 a 2', '>2']);

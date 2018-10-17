@@ -14,15 +14,18 @@ class CheckInCompanionTableSeeder extends Seeder
     public function run()
     {
         DB::table('check_in_companion')->insert([
-            'companion_id' => 1,
             'check_in_id' => 1,
-            'relationship_id' => 1,
+            'companion_id' => 1,
         ]);
 
         DB::table('check_in_companion')->insert([
-            'companion_id' => 2,
             'check_in_id' => 1,
-            'relationship_id' => 2,
+            'companion_id' => 3,
+        ]);
+
+        DB::table('check_in_companion')->insert([
+            'check_in_id' => 2,
+            'companion_id' => 2,
         ]);
     }
 }

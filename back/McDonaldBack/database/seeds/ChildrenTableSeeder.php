@@ -26,7 +26,7 @@ class ChildrenTableSeeder extends Seeder
             'locality' => "Veracruz",
             'municipality' => "El Puerto",
             'zip_code' => "124121",
-            'state_id' => 31, //veracruz
+            'state_id' => 7, //veracruz
             'phone_1' => "222-123-1212",
             'phone_2' => "999-122-1235",
             'social' => "1",
@@ -38,7 +38,7 @@ class ChildrenTableSeeder extends Seeder
             'names' => "Enrique",
             'flast_name' => "Lozada",
             'mlast_name' => "Vega",
-            'birthday' => Carbon::parse('1995-12-29'),
+            'birthday' => Carbon::parse('1995-12-30'),
             'sex' => "Masculino",
             'scholarship_id' => 2,
             'address_street' => str_random(10),
@@ -47,7 +47,7 @@ class ChildrenTableSeeder extends Seeder
             'locality' => str_random(10),
             'municipality' => str_random(10),
             'zip_code' => str_random(7),
-            'state_id' => 31, //veracruz
+            'state_id' => 7, //veracruz
             'phone_1' => "222-123-1212",
             'phone_2' => "999-122-1235",
             'social' => "3",

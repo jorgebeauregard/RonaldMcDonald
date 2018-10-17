@@ -21,7 +21,6 @@ class CreateCheckInsTable extends Migration
             $table->enum('child_status', ['En casa', 'Hospitalizado', 'Extra']);
             $table->unsignedInteger('doctor_id');
             $table->string('diagnosis', 128);
-            $table->timestamps();
             $table->unsignedInteger('treatment_id');
             $table->unsignedInteger('diet_id');
             $table->unsignedInteger('social_worker_id');
@@ -29,6 +28,7 @@ class CreateCheckInsTable extends Migration
             $table->date('check_out_date')->nullable();
             $table->unsignedInteger('additional_children');
             $table->text('remarks');
+            $table->timestamps();
         });
 
         Schema::table('check_ins', function($table) {

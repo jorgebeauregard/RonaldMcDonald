@@ -22,7 +22,6 @@ class CreateCompanionsTable extends Migration
             $table->enum('sex', ['Masculino', 'Femenino']);
             $table->unsignedInteger('scholarship_id');
             $table->string('identification', 128);
-            $table->timestamps();
             $table->enum('health_status', ['Sano', 'En tratamiento', 'Enfermo']);
             $table->boolean('working');
             $table->unsignedInteger('occupation_id');
@@ -34,6 +33,7 @@ class CreateCompanionsTable extends Migration
             $table->boolean('financial_aid');
             $table->decimal('monthly_income', 10, 2);
             $table->text('remarks');
+            $table->timestamps();
         });
 
         Schema::table('companions', function($table) {

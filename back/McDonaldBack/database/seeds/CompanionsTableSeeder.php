@@ -12,11 +12,11 @@ class CompanionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('companions')->insert([
-            'names' => "Fernanda",
-            'flast_name' => "Montaño",
-            'mlast_name' => "Ríos",
-            'age' => 21,
-            'sex' => 'Femenino',
+            'names' => "Fahrid",
+            'flast_name' => "Tinok",
+            'mlast_name' => "",
+            'age' => 40,
+            'sex' => 'Masculino',
             'scholarship_id' => 6,
             'identification' => "A01231231",
             'health_status' => 'Sano',
@@ -51,6 +51,27 @@ class CompanionsTableSeeder extends Seeder
             'financial_aid' => true,
             'monthly_income' => 1.00,
             'remarks' => "Muchos muchos seeds",
+        ]);
+
+        DB::table('companions')->insert([
+            'names' => "Liz",
+            'flast_name' => "Borrego",
+            'mlast_name' => "",
+            'age' => 23,
+            'sex' => 'Femenino',
+            'scholarship_id' => 5,
+            'identification' => "A01234238",
+            'health_status' => 'Sano',
+            'working' => false,
+            'occupation_id' => 1,
+            'paid_leave' => false,
+            'healthcare' => true,
+            'economic_dependencies' => 2,
+            'home_owner' => false,
+            'rent' => 2.00,
+            'financial_aid' => false,
+            'monthly_income' => 3.00,
+            'remarks' => "Lorem ipsum bla bla bla",
         ]);
     }
 }
