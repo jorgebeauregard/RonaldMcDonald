@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Model;
 
-class CheckInCompanion extends Pivot
+class ChildCompanion extends Pivot
 {   
     /* 
     How to get the info of a pivot table:
@@ -23,7 +23,7 @@ class CheckInCompanion extends Pivot
     protected $fillable = [
         'relationship_id',
         'companion_id',
-        'check_in_id',
+        'child_id',
     ];
 
     //Relationship
