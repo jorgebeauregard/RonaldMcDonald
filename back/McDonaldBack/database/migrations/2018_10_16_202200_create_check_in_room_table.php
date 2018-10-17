@@ -17,6 +17,7 @@ class CreateCheckInRoomTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('check_in_id');
             $table->unsignedInteger('room_id');
+            $table->boolean('active');
             $table->timestamps();
         });
 
