@@ -9,7 +9,7 @@ class NavBar extends Component {
 
     render() { 
         return ( 
-            <nav className="navbar is-fixed-top red" role="navigation" aria-label="main navigation">
+            <nav className="navbar is-fixed-top has-background-warning" role="navigation" aria-label="main navigation">
                 <div className="container is-fluid">
                     <div className="navbar-brand">
                         <img className="nav-logo logo"src={logo}/>

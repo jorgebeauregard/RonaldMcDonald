@@ -5,8 +5,20 @@ body {
 }
 
 body, html{
-  background-color: #fafafa;
 }
 
+.reactable-page-button{
+  color: #2f1e91 !important;
+  margin-right: 10px;
+}
 
+.reactable-previous-page{
+  color: #2f1e91 !important;
+  margin-right: 10px;
+}
+
+.reactable-next-page{
+  color: #2f1e91 !important;
+  margin-right: 10px;
+}
 

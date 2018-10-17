@@ -4,8 +4,8 @@ import 'bulma/css/bulma.css';
 import './App.css';
 
 import NavBar from './components/NavBar';
-import MainComponent from './components/MainComponent';
 import ChildComponent from './components/ChildComponent';
+import ChildrenComponent from './components/ChildrenComponent';
 import CompanionComponent from './components/CompanionComponent';
 import DashboardComponent from './components/DashboardComponent';
 
@@ -13,9 +13,9 @@ class App extends Component {
   render() {
     return (
       <div className="margin-bottom">
-        <NavBar />
+        <NavBar/>
       <div className="container is-fluid margin">
-        <DashboardComponent/>
+        <ChildrenComponent/>
       </div>
       </div>
     );
