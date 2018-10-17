@@ -30,6 +30,14 @@ Route::get('/companion',      'CompanionController@read');   //R
 Route::get('/companion/{id}', 'CompanionController@read');   //R
 Route::put('/companion',      'CompanionController@update'); //U
 Route::delete('/companion',   'CompanionController@delete'); //D
+
+
+//State
+Route::post('/state',     'StateController@create'); //C
+Route::get('/state',      'StateController@read');   //R
+Route::get('/state/{id}', 'StateController@read');   //R
+Route::put('/state',      'StateController@update'); //U
+Route::delete('/state',   'StateController@delete'); //D
                                                         
 
 
