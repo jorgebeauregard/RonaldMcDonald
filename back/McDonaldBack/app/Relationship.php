@@ -25,7 +25,7 @@ class Relationship extends Model
         //One to many  
             //belongsTo('App\Model','my_key','his_key');
     
-    public function companion_check_in(){
-        return $this->belongsTo('App\CompanionCheckIn','id','relationship_id');
+    public function child_companion(){
+        return $this->belongsTo('App\ChildCompanion','id','relationship_id');
     }
 }

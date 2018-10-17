@@ -25,6 +25,7 @@ class Hospital extends Model
         //One to many  
             //belongsTo('App\Model','my_key','his_key');
     
-   
-
+    public function check_in(){
+        return belongsTo('App\CheckIn','id','hospital_id');
+    }
 }

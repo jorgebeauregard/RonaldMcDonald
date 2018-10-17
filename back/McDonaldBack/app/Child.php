@@ -28,6 +28,17 @@ class Child extends Model
         'min_wage'
     ];
 
+     //This might not be necessary at all
+     public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
+        if ($parent instanceof Companion) {
+            //For some weird fucking reason both of these work...god save laravel
+            //return ChildCompanion::fromRawAttributes($parent,$attributes, $table, $exists);
+            return new ChildCompanion($attributes, $table, $exists, $using = null);
+        }
+        return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
+    }
+
+
      //Relationship
         //One to one
             //hasSomething('App\Model','his_key','my_key');
@@ -58,4 +69,11 @@ class Child extends Model
         return $this->hasOne('App\State','id','state_id');
     }
 
+    public function companions(){
+        return $this->belongsToMany('App\Companion')->using('App\ChildCompanion');
+    }
+
+    public function check_in(){
+        return $this->belongsTo('App\Companion','id','child_id');
+    }
 }

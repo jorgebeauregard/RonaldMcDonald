@@ -11,7 +11,7 @@ class CheckIn extends Model
         'check_in_date',
         'hospital_id',
         'child_status',
-        'attending_doctor',
+        'doctor_id',
         'diagnosis',
         'treatment_id',
         'diet_id',
@@ -19,16 +19,16 @@ class CheckIn extends Model
         're_entry',
         'check_out_date',
         'additional_children',
-        'remarks',
-        'assigned_room'
+        'remarks'
     ];
 
     //This might not be necessary at all
+    //Side note: Laravel documentation NEVER SAID ANYTHING ABOUT THIS LINES NEEDED TO BE ADDED
     public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null) {
-        if ($parent instanceof Companion) {
-            //For some weird fucking reason both of these work...god save laravel
-            //return CheckInCompanion::fromRawAttributes($parent,$attributes, $table, $exists);
-            return new CheckInCompanion($attributes, $table, $exists, $using = null);
+        if ($parent instanceof Room) {
+            //For some weird  reason both of these work...god save laravel
+            return CheckInRoom::fromRawAttributes($parent,$attributes, $table, $exists);
+            //return new CheckInRoom      ($attributes, $table, $exists, $using = null);
         }
         return parent::newPivot($parent, $attributes, $table, $exists,$using = null);
     }
@@ -56,18 +56,27 @@ class CheckIn extends Model
         return $this->hasOne('App\Hospital','id','hospital_id');
     }
 
-    public function diet(){
-        return $this->hasOne('App\Diet','id','diet_id');
-    }
-
     public function treatment(){
         return $this->hasOne('App\Treatment','id','treatment_id');
     }
 
-
-    public function companions(){
-        return $this->belongsToMany('App\Companion')->using('App\CheckInCompanion');
+    public function doctor(){
+        return $this->hasOne('App\Doctor','id','doctor_id');
     }
 
+    public function diet(){
+        return $this->hasOne('App\Diet','id','diet_id');
+    }
 
+    public function child(){
+        return $this->hasOne('App\Child','id','child_id');
+    }
+
+    public function rooms(){
+        return $this->belongsToMany('App\CheckInRoom','check_in_room','check_in_id','room_id');
+    }
+
+    public function companions(){
+        return $this->belongsToMany('App\Companion','check_in_companion','check_in_id','companion_id');
+    }
 }
