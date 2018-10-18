@@ -48,6 +48,7 @@ class DashboardComponent extends Component {
                                 </div>
 
                                 <div className="column">
+                                    <a href={'/children'}>
                                     <div className="card has-background-success">
                                         <div className="card-content">
                                             <div className="columns">
@@ -63,10 +64,9 @@ class DashboardComponent extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        
                                     </div>
+                                    </a>
                                 </div>
 
                                 <div className="column">

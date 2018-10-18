@@ -1,9 +1,36 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './ChildComponent.css';
 
 
 class ChildComponent extends Component {
-    state = {}
+    state = {
+        child: {},
+        companions: []
+    };
+
+    async componentDidMount(){
+        await axios.get('http://192.168.100.11:8000/api/children/' + this.props.match.params.id).then(res => {
+            this.setState({child: res.data});
+        });
+
+        await axios.get('http://192.168.100.11:8000/api/children/companions/' + this.props.match.params.id).then(res => {
+            console.log(res);
+            this.setState({companions: res.data});
+        });
+
+    }
+
+    renderCompanions(){
+        return(
+            this.state.companions.map(companion =>
+                <tr key={companion.id}>
+                    <td><a href={'/companions/' + companion.id} className="has-text-primary">{companion.names} {companion.flast_name}</a></td>
+                    <td>{companion.relationship_name}</td>
+                </tr>
+            )
+        )
+    }
 
     render() { 
         return ( 
@@ -12,15 +39,15 @@ class ChildComponent extends Component {
                     <div className="level-left">
                         <div className="level-item margin-top">
                             <div>
-                            <p className="title is-3">Luis Pérez</p>
+                            <p className="title is-3">{this.state.child.names} {this.state.child.flast_name} {this.state.child.mlast_name} </p>
                             </div>
                         </div>
                     </div>
                     <div className="level-right">
                         <div className="level-item">
-                            <a class="button is-danger margin-top">
-                                <span class="icon is-small">
-                                    <i class="fas fa-sign-out-alt"></i>
+                            <a className="button is-danger margin-top">
+                                <span className="icon is-small">
+                                    <i className="fas fa-sign-out-alt"></i>
                                 </span>
                                 <span>Check-out</span>
                             </a>
@@ -73,7 +100,7 @@ class ChildComponent extends Component {
                                     <div className="card-content">
                                         <div className="columns">
                                             <div className="column">
-                                                <a className="button is-success margin-bottom is-pulled-left"><span class="icon"><i class="fa fa-plus"></i></span><span>Agregar familiar</span></a>
+                                                <a className="button is-success margin-bottom is-pulled-left"><span className="icon"><i className="fa fa-plus"></i></span><span>Agregar familiar</span></a>
                                                 <br/>
                                             </div>
                                         </div>
@@ -86,18 +113,7 @@ class ChildComponent extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Juan Pérez</td>
-                                                        <td>Abuelo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Luisa Pérez</td>
-                                                        <td>Mamá</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Julián Pérez</td>
-                                                        <td>Hermano</td>
-                                                    </tr>
+                                                    {this.renderCompanions()}
                                                 </tbody>
                                             </table>
                                         </div>                                
@@ -154,7 +170,7 @@ class ChildComponent extends Component {
                                             <div className="columns is-multiline">
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Fecha de nacimiento:</p>
-                                                    <p className="subtitle ">15 de julio</p>
+                                                    <p className="subtitle ">{this.state.child.birthday}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Edad:</p>
@@ -162,7 +178,7 @@ class ChildComponent extends Component {
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Género:</p>
-                                                    <p className="subtitle ">Masculino</p>
+                                                    <p className="subtitle ">{this.state.child.sex}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Escolaridad:</p>
@@ -170,23 +186,23 @@ class ChildComponent extends Component {
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Dirección:</p>
-                                                    <p className="subtitle ">Orión Sur #1593</p>
+                                                    <p className="subtitle ">{this.state.child.address_street} {this.state.child.address_number}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Colonia:</p>
-                                                    <p className="subtitle ">Villas Orión</p>
+                                                    <p className="subtitle ">{this.state.child.neighborhood}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Localidad:</p>
-                                                    <p className="subtitle ">Cholula</p>
+                                                    <p className="subtitle ">{this.state.child.locality}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Municipio:</p>
-                                                    <p className="subtitle ">San Andrés Cholula</p>
+                                                    <p className="subtitle ">{this.state.child.municipality}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Código postal:</p>
-                                                    <p className="subtitle ">72825</p>
+                                                    <p className="subtitle ">{this.state.child.zip_code}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Estado:</p>
@@ -194,15 +210,15 @@ class ChildComponent extends Component {
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Zona:</p>
-                                                    <p className="subtitle ">Urbana</p>
+                                                    <p className="subtitle ">{this.state.child.sone_type}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Estado Socieconómico:</p>
-                                                    <p className="subtitle "></p>
+                                                    <p className="subtitle ">{this.state.child.social}</p>
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Salarios:</p>
-                                                    <p className="subtitle "></p>
+                                                    <p className="subtitle ">{this.state.child.min_wage}</p>
                                                 </div>
                                             </div>
                                         </div>

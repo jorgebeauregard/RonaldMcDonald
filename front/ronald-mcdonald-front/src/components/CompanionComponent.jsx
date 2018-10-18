@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './CompanionComponent.css';
 
 
 class CompanionComponent extends Component {
-    state = {}
+    state = {
+        companion: []
+    };
+
+    async componentDidMount(){
+        await axios.get('http://192.168.100.11:8000/api/companions/' + this.props.match.params.id).then(res => {
+            this.setState({companion: res.data});
+            console.log(this.state.companion);
+        });
+    }
 
     render() { 
         return ( 
@@ -12,7 +22,7 @@ class CompanionComponent extends Component {
                     <div className="level-left">
                         <div className="level-item margin-top">
                             <div>
-                            <p className="title is-3">Luis Pérez</p>
+                            <p className="title is-3">{this.state.companion.names} {this.state.companion.flast_name} {this.state.companion.mlast_name}</p>
                             </div>
                         </div>
                     </div>
@@ -70,64 +80,64 @@ class CompanionComponent extends Component {
                                         <div className="content">
                                             <div className="columns is-multiline">
                                                <div className="column is-one-third">
-                                            <p className="title is-4 ">Fecha de nacimiento:</p>
-                                            <p className="subtitle ">15 de julio</p>
-                                        </div>
-                                        <div className="column is-one-third">
                                             <p className="title is-4 ">Edad:</p>
-                                            <p className="subtitle ">12 años</p>
+                                            <p className="subtitle ">{this.state.companion.age} años</p>
                                         </div>
                                         <div className="column is-one-third">
                                             <p className="title is-4 ">Género:</p>
-                                            <p className="subtitle ">Masculino</p>
+                                            <p className="subtitle ">{this.state.companion.sex}</p>
                                         </div>
                                         <div className="column is-one-third">
                                             <p className="title is-4 ">Escolaridad:</p>
-                                            <p className="subtitle ">Primaria</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Dirección:</p>
-                                            <p className="subtitle ">Orión Sur #1593</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Colonia:</p>
-                                            <p className="subtitle ">Villas Orión</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Localidad:</p>
-                                            <p className="subtitle ">Cholula</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Municipio:</p>
-                                            <p className="subtitle ">San Andrés Cholula</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Código postal:</p>
-                                            <p className="subtitle ">72825</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Estado:</p>
-                                            <p className="subtitle ">Puebla</p>
-                                        </div>
-                                        <div className="column is-one-third">
-                                            <p className="title is-4 ">Zona:</p>
-                                            <p className="subtitle ">Urbana</p>
+                                            <p className="subtitle ">{this.state.companion.scholarship}</p>
                                         </div>
                                         <div className="column is-one-third">
                                             <p className="title is-4 ">Identificación:</p>
-                                            <p className="subtitle ">ZVR854123546JT713</p>
+                                            <p className="subtitle ">{this.state.companion.identification}</p>
                                         </div>
                                         <div className="column is-one-third">
                                             <p className="title is-4 ">Salud:</p>
-                                            <p className="subtitle ">Sano</p>
+                                            <p className="subtitle ">{this.state.companion.health_status}</p>
                                         </div>
                                         <div className="column is-one-third">
-                                            <p className="title is-4 ">Socieconómico:</p>
-                                            <p className="subtitle "></p>
+                                            <p className="title is-4 ">Trabaja:</p>
+                                            <p className="subtitle ">{this.state.companion.working}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Ocupación:</p>
+                                            <p className="subtitle ">Albañil</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Licencia para no trabajar:</p>
+                                            <p className="subtitle ">{this.state.companion.paid_leave}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Seguro social:</p>
+                                            <p className="subtitle ">{this.state.companion.healthcare}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Dependientes económicos:</p>
+                                            <p className="subtitle ">{this.state.companion.economic_dependencies}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Dueño de casa:</p>
+                                            <p className="subtitle ">{this.state.companion.home_owner}</p>
                                         </div>
                                         <div className="column is-one-third">
                                             <p className="title is-4 ">Salarios:</p>
-                                            <p className="subtitle "></p>
+                                            <p className="subtitle ">{this.state.companion.monthly_income}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Apoyo financiero:</p>
+                                            <p className="subtitle ">{this.state.companion.financial_aid}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Renta:</p>
+                                            <p className="subtitle ">{this.state.companion.rent}</p>
+                                        </div>
+                                        <div className="column is-one-third">
+                                            <p className="title is-4 ">Comentarios:</p>
+                                            <p className="subtitle ">{this.state.companion.remarks}</p>
                                         </div>
                                             </div>
                                         </div>
