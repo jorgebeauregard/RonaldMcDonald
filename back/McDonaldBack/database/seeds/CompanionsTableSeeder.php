@@ -82,26 +82,29 @@ class CompanionsTableSeeder extends Seeder
         $zone = ['Rural', 'Sub-urbana', 'Urbana'];
         $wage = ['<1', '1 a 2', '>2'];
 
-        DB::table('companions')->insert([
-            'names' => $names[rand(0,count($names))],
-            'flast_name' => $apellido[rand(0,count($apellido))],
-            'mlast_name' => $apellido[rand(0,count($apellido))],
-            'age' => rand(1,100),
-            'sex' => $gender[rand(0,1)],
-            'scholarship_id' => rand(1,9),
-            'identification' => "A01234238",
-            'health_status' => 'Sano',
-            'working' => false,
-            'occupation_id' => 1,
-            'paid_leave' => false,
-            'healthcare' => true,
-            'economic_dependencies' => rand(0,10),
-            'home_owner' => false,
-            'rent' => 2.00,
-            'financial_aid' => false,
-            'monthly_income' => 3.00,
-            'remarks' => "Lorem ipsum bla bla bla",
-        ]);
+        for ($i = 0; $i <= 40; $i++) {
+            DB::table('companions')->insert([
+                'names' => $names[rand(0,count($names))],
+                'flast_name' => $apellido[rand(0,count($apellido))],
+                'mlast_name' => $apellido[rand(0,count($apellido))],
+                'age' => rand(1,100),
+                'sex' => $gender[rand(0,1)],
+                'scholarship_id' => rand(1,9),
+                'identification' => "A01234238",
+                'health_status' => 'Sano',
+                'working' => false,
+                'occupation_id' => 1,
+                'paid_leave' => false,
+                'healthcare' => true,
+                'economic_dependencies' => rand(0,10),
+                'home_owner' => false,
+                'rent' => 2.00,
+                'financial_aid' => false,
+                'monthly_income' => 3.00,
+                'remarks' => "Lorem ipsum bla bla bla",
+            ]);
+        }
+        
 
 
     }

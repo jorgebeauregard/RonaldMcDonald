@@ -12,13 +12,13 @@ class ChildCompanionTableSeeder extends Seeder
     public function run()
     {
         DB::table('child_companion')->insert([
-            'child_id' => 1,
+            'child_id' => 14,
             'companion_id' => 1,
             'relationship_id' => 1
         ]);
 
         DB::table('child_companion')->insert([
-            'child_id' => 1,
+            'child_id' => 14,
             'companion_id' => 3,
             'relationship_id' => 2
         ]);
