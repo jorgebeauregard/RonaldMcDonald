@@ -132,7 +132,7 @@ class DashboardComponent extends Component {
                                             <tr>
                                             <td>Luis Pérez</td>
                                             <td>4</td>
-                                            <td><a className="button is-medium is-danger"><span class="icon has-text-white"><i class="fas fa-hospital"></i></span></a></td>                              
+                                            <td><a className="button is-medium is-danger"><span className="icon has-text-white"><i className="fas fa-hospital"></i></span></a></td>                              
                                             </tr>
                                         </tbody>
                                     </table>
@@ -156,7 +156,7 @@ class DashboardComponent extends Component {
                                             <tr>
                                             <td>Luis Pérez</td>
                                             <td>4</td>    
-                                            <td><a className="button is-medium is-primary"><span class="icon has-text-white"><i class="fas fa-home "></i></span></a></td>                              
+                                            <td><a className="button is-medium is-primary"><span className="icon has-text-white"><i className="fas fa-home "></i></span></a></td>                              
                                             </tr>
                                         </tbody>
                                     </table>

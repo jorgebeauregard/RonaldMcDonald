@@ -10,11 +10,11 @@ class ChildComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://127.0.0.1:8000/api/children/' + this.props.match.params.id).then(res => {
+        await axios.get('http://10.50.87.216:8000/api/children/' + this.props.match.params.id).then(res => {
             this.setState({child: res.data});
         });
 
-        await axios.get('http://127.0.0.1:8000/api/children/companions/' + this.props.match.params.id).then(res => {
+        await axios.get('http://10.50.87.216:8000/api/children/companions/' + this.props.match.params.id).then(res => {
             console.log(res);
             this.setState({companions: res.data});
         });
@@ -48,7 +48,7 @@ class ChildComponent extends Component {
             <div>
                 <div className="columns margin-top">
                     <div className="column">
-                        <p className="title is-3">{this.state.child.names} {this.state.child.flast_name} {this.state.child.mlast_name} </p>
+                        <p className="title is-3" id="child_name">{this.state.child.names} {this.state.child.flast_name} {this.state.child.mlast_name} </p>
                     </div>
                     <div className="column is-hidden-mobile">
                         <a className="button is-danger is-pulled-right">
