@@ -63,9 +63,9 @@ class ChildrenTableSeeder extends Seeder
         $wage = ['<1', '1 a 2', '>2'];
         for ($i = 0; $i <= 40; $i++) {
             DB::table('children')->insert([
-                'names' => $names[rand(0,count($names))],
-                'flast_name' => $apellido[rand(0,count($apellido))],
-                'mlast_name' => $apellido[rand(0,count($apellido))],
+                'names' => $names[rand(0,count($names)-1)],
+                'flast_name' => $apellido[rand(0,count($apellido)-1)],
+                'mlast_name' => $apellido[rand(0,count($apellido)-1)],
                 'birthday' => Carbon::parse('1995-12-30'),
                 'sex' => $gender[rand(0,1)],
                 'scholarship_id' => rand(1,9),

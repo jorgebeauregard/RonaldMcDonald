@@ -84,9 +84,9 @@ class CompanionsTableSeeder extends Seeder
 
         for ($i = 0; $i <= 40; $i++) {
             DB::table('companions')->insert([
-                'names' => $names[rand(0,count($names))],
-                'flast_name' => $apellido[rand(0,count($apellido))],
-                'mlast_name' => $apellido[rand(0,count($apellido))],
+                'names' => $names[rand(0,count($names)-1)],
+                'flast_name' => $apellido[rand(0,count($apellido)-1)],
+                'mlast_name' => $apellido[rand(0,count($apellido)-1)],
                 'age' => rand(1,100),
                 'sex' => $gender[rand(0,1)],
                 'scholarship_id' => rand(1,9),
