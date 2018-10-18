@@ -16,8 +16,7 @@ class CompanionController extends Controller
             return Companion::get();
         }
         else{
-            $id = ((int)($request->id));
-            return Companion::find($id);
+            return Companion::find($request->id);
         }
     }
 
