@@ -9,7 +9,7 @@ export default class ChildrenComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://127.0.0.1:8000/api/children').then(res => {
+        await axios.get('http://10.50.87.216:8000/api/children').then(res => {
             this.setState({children: res.data});
         });
     }
@@ -18,6 +18,7 @@ export default class ChildrenComponent extends Component {
         return(
             this.state.children.map(child =>
                 <Tr key={child.id}>
+                    <Td column="ID">{child.id}</Td>
                     <Td column="Nombre">{child.names}</Td>
                     <Td column="Apellido paterno">{child.flast_name}</Td>
                     <Td column="Apellido materno">{child.mlast_name}</Td>

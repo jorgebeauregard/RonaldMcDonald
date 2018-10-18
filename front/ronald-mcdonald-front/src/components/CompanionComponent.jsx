@@ -9,7 +9,7 @@ class CompanionComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://127.0.0.1:8000/api/companions/' + this.props.match.params.id).then(res => {
+        await axios.get('http://10.50.87.216:8000/api/companions/' + this.props.match.params.id).then(res => {
             this.setState({companion: res.data});
             console.log(this.state.companion);
         });
@@ -18,15 +18,11 @@ class CompanionComponent extends Component {
     render() { 
         return ( 
             <div>
-                <nav className="level is-mobile">
-                    <div className="level-left">
-                        <div className="level-item margin-top">
-                            <div>
-                            <p className="title is-3">{this.state.companion.names} {this.state.companion.flast_name} {this.state.companion.mlast_name}</p>
-                            </div>
-                        </div>
+                <div className="columns margin-top">
+                    <div className="column">
+                        <p className="title is-3">{this.state.companion.names} {this.state.companion.flast_name} {this.state.companion.mlast_name}</p>             
                     </div>
-                </nav>
+                </div>
 
                 <div className="columns is-multiline">
                     <div className="column is-two-fifths">
