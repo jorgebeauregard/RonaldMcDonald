@@ -25,8 +25,19 @@ class ChildComponent extends Component {
         return(
             this.state.companions.map(companion =>
                 <tr key={companion.id}>
-                    <td><a href={'/companions/' + companion.id} className="has-text-primary">{companion.names} {companion.flast_name}</a></td>
+                    <td>{companion.names} {companion.flast_name}</td>
                     <td>{companion.relationship_name}</td>
+                    <td>
+                        <div className="columns">
+                            <div className="column">
+                                <a className="button has-background-primary has-text-white" href={'/companions/'+companion.id}>
+                                    <span className="icon is-small">
+                                    <i className="fas fa-info"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div> 
+                    </td>
                 </tr>
             )
         )
@@ -35,27 +46,29 @@ class ChildComponent extends Component {
     render() { 
         return ( 
             <div>
-                <nav className="level is-mobile">
-                    <div className="level-left">
-                        <div className="level-item margin-top">
-                            <div>
-                            <p className="title is-3">{this.state.child.names} {this.state.child.flast_name} {this.state.child.mlast_name} </p>
-                            </div>
-                        </div>
+                <div className="columns margin-top">
+                    <div className="column">
+                        <p className="title is-3">{this.state.child.names} {this.state.child.flast_name} {this.state.child.mlast_name} </p>
                     </div>
-                    <div className="level-right">
-                        <div className="level-item">
-                            <a className="button is-danger margin-top">
-                                <span className="icon is-small">
-                                    <i className="fas fa-sign-out-alt"></i>
-                                </span>
-                                <span>Check-out</span>
-                            </a>
-                        </div>
+                    <div className="column is-hidden-mobile">
+                        <a className="button is-danger is-pulled-right">
+                            <span className="icon is-small">
+                                <i className="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span>Check-out</span>
+                        </a>
                     </div>
-                </nav>
+                    <div className="column is-hidden-tablet">
+                        <a className="button is-danger">
+                            <span className="icon is-small">
+                                <i className="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span>Check-out</span>
+                        </a>
+                    </div>
+                </div>
 
-                <div className="columns is-multiline">
+                <div className="columns is-multilin">
                     <div className="column is-two-fifths">
                         <div className="columns is-multiline">
                             <div className="column is-fullwdith">
@@ -110,6 +123,7 @@ class ChildComponent extends Component {
                                                     <tr>
                                                         <th>Nombre</th>
                                                         <th>Parentesco</th>
+                                                        <th>Info.</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

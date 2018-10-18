@@ -19,10 +19,12 @@ export default class ChildrenComponent extends Component {
             this.state.children.map(child =>
                 <Tr key={child.id}>
                     <Td column="Nombre">{child.names}</Td>
+                    <Td column="Apellido paterno">{child.flast_name}</Td>
+                    <Td column="Apellido materno">{child.mlast_name}</Td>
                     <Td column="Género">{child.sex}</Td>
                     <Td column="Edad">{child.birthday}</Td>
                     <Td column="Ubicación">{child.locality}</Td>
-                    <Td column="Información">
+                    <Td column="Info.">
                         <div className="columns">
                             <div className="column">
                                 <a className="button has-background-primary has-text-white" href={'/children/'+child.id}>

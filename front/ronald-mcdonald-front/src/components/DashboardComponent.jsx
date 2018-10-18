@@ -12,9 +12,9 @@ class DashboardComponent extends Component {
                     <div className="column is-2">
                         <div className="card">
                             <div className="card-content">
-                                <p className="title is-3">Herramientas</p>
-                                <a className="button is-warning has-text-white is-medium is-fullwidth">Hacer check-in</a><br/>
-                                <a className="button is-success has-text-white is-medium is-fullwidth">Agregar niño</a>
+                                <p className="title is-3 animated zoomIn">Herramientas</p>
+                                <a className="button is-success has-text-white is-medium is-fullwidth animated zoomIn">Hacer check-in</a><br/>
+                                <a className="button is-warning has-text-white is-medium is-fullwidth animated zoomIn">Registrar niño</a>
                             </div>
                         </div>
                         
@@ -25,31 +25,12 @@ class DashboardComponent extends Component {
                             <div className="card-content">
                                 <div className="columns is-multiline">
                                 <div className="column is-full">
-                                    <p className="title is-3">Información general</p>
-                                </div>
-                                <div className="column">
-                                    <div className="card has-background-warning">
-                                        <div className="card-content">
-                                            <div className="columns">
-                                                <div className="column is-one-fifth">
-                                                    <span className="icon has-text-white padding">
-                                                        <i className="fas fa-3x fa-bed"></i>
-                                                    </span>
-                                                </div>
-                                                <div className="column">
-                                                    <div className="content">
-                                                        <p className="title is-5 has-text-white has-text-right has-text-left-mobile">Habitaciones</p>
-                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">50/50</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p className="title is-3 animated zoomIn">Información general</p>
                                 </div>
 
                                 <div className="column">
                                     <a href={'/children'}>
-                                    <div className="card has-background-success">
+                                    <div className="card has-background-warning animated zoomIn">
                                         <div className="card-content">
                                             <div className="columns">
                                                 <div className="column is-one-fifth">
@@ -60,7 +41,7 @@ class DashboardComponent extends Component {
                                                 <div className="column">
                                                     <div className="content">
                                                         <p className="title is-5 has-text-white has-text-right has-text-left-mobile">Niños registrados</p>
-                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">50/50</p>
+                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">147</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +51,27 @@ class DashboardComponent extends Component {
                                 </div>
 
                                 <div className="column">
-                                    <div className="card has-background-primary">
+                                    <div className="card has-background-success animated zoomIn">
+                                        <div className="card-content">
+                                            <div className="columns">
+                                                <div className="column is-one-fifth">
+                                                    <span className="icon has-text-white padding">
+                                                        <i className="fas fa-3x fa-bed"></i>
+                                                    </span>
+                                                </div>
+                                                <div className="column">
+                                                    <div className="content">
+                                                        <p className="title is-5 has-text-white has-text-right has-text-left-mobile">Habitaciones</p>
+                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">27/50</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="column">
+                                    <div className="card has-background-primary animated zoomIn">
                                         <div className="card-content">
                                             <div className="columns">
                                                 <div className="column is-one-fifth">
@@ -81,7 +82,7 @@ class DashboardComponent extends Component {
                                                 <div className="column">
                                                     <div className="content">
                                                         <p className="title is-5 has-text-white has-text-right has-text-left-mobile">Niños en casa</p>
-                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">50/50</p>
+                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">14/27</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +91,7 @@ class DashboardComponent extends Component {
                                 </div>
 
                                 <div className="column">
-                                    <div className="card has-background-danger">
+                                    <div className="card has-background-danger animated zoomIn">
                                         <div className="card-content">
                                             <div className="columns">
                                                 <div className="column is-one-fifth">
@@ -101,7 +102,7 @@ class DashboardComponent extends Component {
                                                 <div className="column">
                                                     <div className="content">
                                                         <p className="title is-5 has-text-white has-text-right has-text-left-mobile">Niños en hospital</p>
-                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">50/50</p>
+                                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">13/27</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -113,13 +114,13 @@ class DashboardComponent extends Component {
 
                             <div className="columns">
                                 <div className="column">
-                                    <div className="card has-background-primary">
+                                    <div className="card has-background-primary animated zoomIn">
                                         <div className="card-content">
                                             <p className="title is-4 has-text-white">Niños en la casa</p>
                                         </div>
                                     </div>
                                     <br/>
-                                    <table className="table is-fullwidth is-striped is-bordered">
+                                    <table className="table is-fullwidth is-striped is-bordered animated zoomIn" >
                                         <thead>
                                             <tr>
                                             <th>Nombre</th>
@@ -137,13 +138,13 @@ class DashboardComponent extends Component {
                                     </table>
                                 </div>
                                 <div className="column">
-                                    <div className="card has-background-danger">
+                                    <div className="card has-background-danger animated zoomIn">
                                         <div className="card-content">
                                             <p className="title is-4 has-text-white">Niños en hospital</p>
                                         </div>
                                     </div>
                                     <br/>
-                                    <table className="table is-fullwidth is-striped is-bordered">
+                                    <table className="table is-fullwidth is-striped is-bordered animated zoomIn">
                                         <thead>
                                             <tr>
                                             <th>Nombre</th>
