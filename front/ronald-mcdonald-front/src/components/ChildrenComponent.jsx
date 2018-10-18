@@ -9,7 +9,7 @@ export default class ChildrenComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://192.168.100.11:8000/api/children').then(res => {
+        await axios.get('http://127.0.0.1:8000/api/children').then(res => {
             this.setState({children: res.data});
         });
     }
@@ -47,7 +47,7 @@ export default class ChildrenComponent extends Component {
             <div className="hack1">
                 <div className="hack2">
                     <Table className="table is-bordered is-fullwidth is-hoverable has-text-black scrollable"
-                    filterable={['Nombre','Género', 'Edad', 'Ubicación']}
+                    filterable={['Nombre','Género', 'Edad', 'Ubicación', 'Apellido paterno', 'Apellido materno']}
                     noDataText="No se encontraron registros"
                     previousPageLabel="Anterior"
                     nextPageLabel="Siguiente"

@@ -10,11 +10,11 @@ class ChildComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://192.168.100.11:8000/api/children/' + this.props.match.params.id).then(res => {
+        await axios.get('http://127.0.0.1:8000/api/children/' + this.props.match.params.id).then(res => {
             this.setState({child: res.data});
         });
 
-        await axios.get('http://192.168.100.11:8000/api/children/companions/' + this.props.match.params.id).then(res => {
+        await axios.get('http://127.0.0.1:8000/api/children/companions/' + this.props.match.params.id).then(res => {
             console.log(res);
             this.setState({companions: res.data});
         });
@@ -232,7 +232,7 @@ class ChildComponent extends Component {
                                                 </div>
                                                 <div className="column is-one-third">
                                                     <p className="title is-4 ">Salarios:</p>
-                                                    <p className="subtitle ">{this.state.child.min_wage}</p>
+                                                    <p className="subtitle">{this.state.child.min_wage}</p>
                                                 </div>
                                             </div>
                                         </div>
