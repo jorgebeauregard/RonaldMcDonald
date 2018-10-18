@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route} from "react-router-dom";
+
 import 'bulma/css/bulma.css';
 import './App.css';
 
@@ -14,9 +15,16 @@ class App extends Component {
     return (
       <div className="margin-bottom">
         <NavBar/>
-      <div className="container is-fluid margin">
-        <ChildrenComponent/>
-      </div>
+        <div className="container is-fluid margin">
+          <BrowserRouter>
+            <div>
+              <Route path="/" component={DashboardComponent} exact />
+              <Route path="/children" component={ChildrenComponent} exact/>
+              <Route path="/children/:id" component={ChildComponent} exact/>
+              <Route path="/companions/:id" component={CompanionComponent} />
+            </div>
+          </BrowserRouter>
+        </div>
       </div>
     );
   }

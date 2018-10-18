@@ -8,10 +8,16 @@ export default class ChildrenComponent extends Component {
         children: [],
     };
 
+    async componentDidMount(){
+        await axios.get('http://192.168.100.11:8000/api/children').then(res => {
+            this.setState({children: res.data});
+        });
+    }
+
     renderRow(){
-        this.state.children.map(child => {
-            return(
-                <Tr>
+        return(
+            this.state.children.map(child =>
+                <Tr key={child.id}>
                     <Td column="Nombre">{child.names}</Td>
                     <Td column="Género">{child.sex}</Td>
                     <Td column="Edad">{child.birthday}</Td>
@@ -19,24 +25,20 @@ export default class ChildrenComponent extends Component {
                     <Td column="Información">
                         <div className="columns">
                             <div className="column">
-                                <a class="button has-background-primary has-text-white">
-                                    <span class="icon is-small">
-                                    <i class="fas fa-info"></i>
+                                <a className="button has-background-primary has-text-white" href={'/children/'+child.id}>
+                                    <span className="icon is-small">
+                                    <i className="fas fa-info"></i>
                                     </span>
                                 </a>
                             </div>
                         </div>    
                     </Td>
-                </Tr>
+                </Tr> 
             )
-        })    
+        )
     }
-
-    componentDidMount(){
-        axios.get('https://10.50.92.13:8000/api/children').then(res => {
-            this.setState({children: res.data});
-        });
-    }
+    
+    
 
     renderTable() {
         return (

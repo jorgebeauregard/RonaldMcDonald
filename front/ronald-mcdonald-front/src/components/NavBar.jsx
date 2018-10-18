@@ -12,7 +12,7 @@ class NavBar extends Component {
             <nav className="navbar is-fixed-top has-background-warning" role="navigation" aria-label="main navigation">
                 <div className="container is-fluid">
                     <div className="navbar-brand">
-                        <img className="nav-logo logo"src={logo}/>
+                        <a href={'/'}><img className="nav-logo logo" src={logo}/></a>
                         
 
                         <div className="navbar-burger burger nav-burger" aria-label="menu" aria-expanded="false" data-target="mainMenu" onClick={this.toggleIsActive}>
