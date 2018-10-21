@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Table, Tr, Td} from "reactable";
+import { Table, Tr, Td } from "reactable";
 import axios from 'axios';
+import { global } from './../global';
 import './ChildrenComponent.css';
 
 export default class ChildrenComponent extends Component {
@@ -9,7 +10,7 @@ export default class ChildrenComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://10.50.87.216:8000/api/children').then(res => {
+        await axios.get(global.globalURL + '/api/children').then(res => {
             this.setState({children: res.data});
         });
     }

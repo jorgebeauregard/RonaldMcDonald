@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import TitleCardComponent from './cards/TitleCardComponent';
 import axios from 'axios';
+import {global} from './../global';
 import './ChildComponent.css';
 
 
@@ -10,11 +12,11 @@ class ChildComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://10.50.87.216:8000/api/children/' + this.props.match.params.id).then(res => {
+        await axios.get(global.globalURL + '/api/children/' + this.props.match.params.id).then(res => {
             this.setState({child: res.data});
         });
 
-        await axios.get('http://10.50.87.216:8000/api/children/companions/' + this.props.match.params.id).then(res => {
+        await axios.get(global.globalURL + '/api/children/companions/' + this.props.match.params.id).then(res => {
             console.log(res);
             this.setState({companions: res.data});
         });
@@ -72,11 +74,7 @@ class ChildComponent extends Component {
                     <div className="column is-two-fifths">
                         <div className="columns is-multiline">
                             <div className="column is-fullwdith">
-                                <div className="card has-background-danger">
-                                    <div className="card-content">
-                                        <p className="title is-3 has-text-white">Información general</p>
-                                    </div>
-                                </div>
+                                <TitleCardComponent title="Información general" background="danger"/>
                             </div>
 
                             <div className="column is-full">
@@ -101,11 +99,7 @@ class ChildComponent extends Component {
                             </div>
 
                             <div className="column is-full">
-                                <div className="card has-background-success">
-                                    <div className="card-content">
-                                        <p className="title is-3 has-text-white">Familiares</p>
-                                    </div>
-                                </div>
+                                <TitleCardComponent title="Familiares" background="success"/>
                             </div>
 
                             <div className="column is-12">
@@ -141,11 +135,7 @@ class ChildComponent extends Component {
                         <div className="columns is-multiline">
 
                             <div className="column is-full">
-                                <div className="card has-background-primary">
-                                    <div className="card-content">
-                                        <p className="title is-3 has-text-white">Información de estancia actual</p>   
-                                    </div>
-                                </div>
+                                <TitleCardComponent title="Información de estancia actual" background="primary"/>
                             </div>
 
                             <div className="column is-full">
@@ -170,11 +160,7 @@ class ChildComponent extends Component {
                             </div>
 
                             <div className="column is-full">
-                                <div className="card has-background-warning">
-                                    <div className="card-content">
-                                        <p className="title is-3 has-text-white">Datos personales</p>
-                                    </div>
-                                </div>
+                                <TitleCardComponent title="Datos personales" background="warning"/>
                             </div>
 
                             <div className="column is-full">
