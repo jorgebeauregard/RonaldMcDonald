@@ -55,6 +55,14 @@ class Child extends Model
             //belongsTo('App\Model','my_key','his_key');
     
 
+    public function transport(){
+        return $this->hasMany('App\Transport','child_id','id');
+    }
+
+    public function ration(){
+        return $this->hasMany('App\Ration','child_id','id');
+    }
+
     public function scholarship(){
         //Child has one scholarship, its attribute id is referenced by scholarship_id
         return $this->hasOne('App\Scholarship','id','scholarship_id');

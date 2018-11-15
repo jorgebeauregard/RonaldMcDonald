@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TreatmentsTableSeeder::class);
         $this->call(DoctorsTableSeeder::class);
         $this->call(RoomsTableSeeder::class);
+        $this->call(DiagnosisTableSeeder::class);
 
         //Dependent
         $this->call(ChildrenTableSeeder::class);
@@ -32,5 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CheckInCompanionTableSeeder::class);
         $this->call(ChildCompanionTableSeeder::class);
         $this->call(CheckInRoomTableSeeder::class);
+        $this->call(RationsTableSeeder::class);
+        $this->call(TransportsTableSeeder::class);
     }
 }

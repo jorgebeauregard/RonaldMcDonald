@@ -20,7 +20,7 @@ class CreateCheckInsTable extends Migration
             $table->unsignedInteger('hospital_id');
             $table->enum('child_status', ['En casa', 'Hospitalizado', 'Extra']);
             $table->unsignedInteger('doctor_id');
-            $table->string('diagnosis', 128);
+            $table->unsignedInteger('diagnosis_id');
             $table->unsignedInteger('treatment_id');
             $table->unsignedInteger('diet_id');
             $table->unsignedInteger('social_worker_id');
@@ -33,6 +33,7 @@ class CreateCheckInsTable extends Migration
 
         Schema::table('check_ins', function($table) {
             $table->foreign('child_id')->references('id')->on('children')->onUpdate('cascade');
+            $table->foreign('diagnosis_id')->references('id')->on('diagnoses')->onUpdate('cascade');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onUpdate('cascade');
             $table->foreign('doctor_id')->references('id')->on('doctors')->onUpdate('cascade');
             $table->foreign('treatment_id')->references('id')->on('treatments')->onUpdate('cascade');

@@ -12,7 +12,7 @@ class CheckIn extends Model
         'hospital_id',
         'child_status',
         'doctor_id',
-        'diagnosis',
+        'diagnosis_id',
         'treatment_id',
         'diet_id',
         'social_worker_id',
@@ -47,6 +47,9 @@ class CheckIn extends Model
             //belongsToMany('App\Model','cross_table','my_key','his_key');
         //One to many  
             //belongsTo('App\Model','my_key','his_key');
+    public function diagnosis(){
+        return $this->hasOne('App\Diagnosis','id','diagnosis_id');
+    }
     
     public function social_worker(){
         return $this->hasOne('App\SocialWorker','id','social_worker_id');
