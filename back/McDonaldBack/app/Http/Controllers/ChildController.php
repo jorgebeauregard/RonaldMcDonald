@@ -15,7 +15,27 @@ class ChildController extends Controller
 
     public function read(Request $request){
         if($request->id == null){
-            return Child::get();
+            $childs =  Child::get();
+            foreach($childs as $child){
+                $transport = $child->transport()->get();
+                $ration = $child->ration()->get();
+                $scholarship = $child->scholarship()->get();
+                $state = $child->state()->get();
+
+                if($state != null){
+                    $state = $state[0];
+                }
+
+                if($scholarship != null){
+                    $scholarship = $scholarship[0];
+                }
+
+                $child->transport = $transport;
+                $child->ration = $ration;
+                $child->scholarship = $scholarship;
+                $child->state = $state;
+            }
+            return $childs;
         }
         else{
             $child = Child::find($request->id);
