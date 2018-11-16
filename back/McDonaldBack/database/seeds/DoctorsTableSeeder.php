@@ -21,6 +21,11 @@ class DoctorsTableSeeder extends Seeder
             'names'=> "Luis",
             'flast_name'=> "García",
             'mlast_name'=> "",
+        
+        DB::table('doctors')->insert([
+            'names'=> "Kevin",
+            'flast_name'=> "Sanchez",
+            'mlast_name'=> "Perez",
         ]);
     }
 }
