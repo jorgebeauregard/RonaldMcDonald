@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        "flast_name",
+        "mlast_name"
     ];
     //Relationship
         //One to one

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'occupied'
     ];
 
      //This might not be necessary at all
