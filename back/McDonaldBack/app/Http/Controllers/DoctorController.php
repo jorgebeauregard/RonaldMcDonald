@@ -10,7 +10,7 @@ class DoctorController extends Controller
 {
     public function create(Request $request){
         $validator = Validator::make($request->all(),[
-            "name" => "required|string",
+            "names" => "required|string",
             "flast_name" => "required|string",
             "mlast_name" => "required|string"
         ]);
@@ -22,7 +22,7 @@ class DoctorController extends Controller
         }
 
         $doctor = Doctor::create([
-            "name" => $request->name,
+            "names" => $request->names,
             "flast_name" => $request->flast_name,
             "mlast_name" => $request->mlast_name
         ]);
@@ -74,7 +74,7 @@ class DoctorController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            "name" => "required|string",
+            "names" => "required|string",
             "flast_name" => "required|string",
             "mlast_name" => "required|string"
         ]);
@@ -85,7 +85,7 @@ class DoctorController extends Controller
             ),400);
         }
 
-        $doctor->name = $request->name;
+        $doctor->names = $request->names;
         $doctor->flast_name = $request->flast_name;
         $doctor->mlast_name = $request->mlast_name;
         $result = $doctor->save();

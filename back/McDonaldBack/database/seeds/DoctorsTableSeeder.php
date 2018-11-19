@@ -12,13 +12,13 @@ class DoctorsTableSeeder extends Seeder
     public function run()
     {
         DB::table('doctors')->insert([
-            'name'=> "Gari",
+            'names'=> "Gari",
             'flast_name'=> "Kaspárov",
             'mlast_name'=> "",
         ]);
 
         DB::table('doctors')->insert([
-            'name'=> "Luis",
+            'names'=> "Luis",
             'flast_name'=> "García",
             'mlast_name'=> "",
         ]);
