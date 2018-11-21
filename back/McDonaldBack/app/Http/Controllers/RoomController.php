@@ -21,7 +21,6 @@ class RoomController extends Controller
 
         $room = Room::create([
             "name"      => $request->name,
-            "occupied"  => false
         ]);
 
         $result = $room->save();
@@ -77,7 +76,6 @@ class RoomController extends Controller
 
         $validator = Validator::make($request->all(), [
             "name" => "required|string",
-            "occupied" => "required|boolean"
         ]);
 
         if ($validator->fails()) {
@@ -87,7 +85,6 @@ class RoomController extends Controller
         }
 
         $room->name = $request->name;
-        $room->occupied = $request->occupied;
         $result = $room->save();
 
         if(!$result){
@@ -133,37 +130,4 @@ class RoomController extends Controller
         
     }
 
-    public function toggle(Request $request){
-        if($request->id == null){
-            return response()->json(array(
-                "error"=>"id absent from request"
-            ),400);
-        }
-
-        $room = Room::find($request->id);
-        if ($room == null) {
-            return response()->json(array(
-                "error" => "id ".$request->id." not found"
-            ),404);
-        }
-        
-        if($room->occupied == false){
-            $room->occupied = true;
-        }
-        else{
-            $room->occupied = false;
-        }
-
-        $result = $room->save();
-
-        if(!$result){
-            return response()->json(array(
-                "error"=>"could not store data"
-            ),500);
-        }
-
-        return response()->json(array(
-            "data" => $room
-        ),200);
-    }
 }

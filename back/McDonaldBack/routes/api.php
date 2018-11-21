@@ -90,7 +90,7 @@ Route::group(['middleware' => 'cors'], function() {
     Route::get('/room/{id}', 'RoomController@read');   //R
     Route::put('/room/{id}', 'RoomController@update'); //U
     Route::delete('/room',   'RoomController@delete'); //D
-
-    Route::put('/room/toggle/{id}',      'RoomController@toggle');
     
+
+    Route::get('/dashboard', 'CheckInController@dashboard');
  });

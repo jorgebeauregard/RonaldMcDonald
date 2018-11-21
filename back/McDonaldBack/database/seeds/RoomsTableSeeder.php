@@ -12,20 +12,16 @@ class RoomsTableSeeder extends Seeder
     public function run()
     {
         DB::table('rooms')->insert([
-            'name'=> "101",
-            'occupied' => true
+            'name'=> "101"
         ]);
         DB::table('rooms')->insert([
-            'name'=> "102",
-            'occupied' => false
+            'name'=> "102"
         ]);
         DB::table('rooms')->insert([
-            'name'=> "201",
-            'occupied' => false
+            'name'=> "201"
         ]);
         DB::table('rooms')->insert([
-            'name'=> "202",
-            'occupied' => false
+            'name'=> "202"
         ]);
     }
 }
