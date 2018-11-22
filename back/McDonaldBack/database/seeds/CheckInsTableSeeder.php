@@ -14,6 +14,22 @@ class CheckInsTableSeeder extends Seeder
     {
         DB::table('check_ins')->insert([
             'child_id' => 1,
+            'check_in_date' => Carbon::parse('1995-05-12'),
+            'hospital_id' => 2,
+            'child_status' => 'En casa',
+            'doctor_id' => 1,
+            'diagnosis_id' => 1,
+            'treatment_id' => 2,
+            'diet_id' => 3,
+            'social_worker_id' => 5,
+            're_entry' => false,
+            'check_out_date' => Carbon::parse('1995-05-12'),
+            'additional_children' => 2,
+            'remarks' => 'Muy mal chico',
+        ]);
+
+        DB::table('check_ins')->insert([
+            'child_id' => 1,
             'check_in_date' => Carbon::parse('2018-05-12'),
             'hospital_id' => 1,
             'child_status' => 'Hospitalizado',

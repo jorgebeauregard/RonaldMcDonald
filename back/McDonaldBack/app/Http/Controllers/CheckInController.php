@@ -11,7 +11,11 @@ use App\Diagnosis;
 use App\Treatment;
 use App\Diet;
 use App\SocialWorker;
+use App\CheckIn;
+use App\CheckInRoom;
 
+//Nota: Cuando borres check in, desactiva room(solo si es el unico activo)
+//muchos checkinroom pueden tener ACTIVO haciendo referencia a un room_id
 class CheckInController extends Controller
 {
     public function create(Request $request){
@@ -116,6 +120,51 @@ class CheckInController extends Controller
          * numero total de niños registrados en la pataforma 
          */
 
-         
+        //Cuantos niños hay en total en la base
+        $totalKids = Child::get()->count();
+        //Cuantas habitaciones OCUPADAS
+            //Si fuera sacar las libres, hago esto:
+                //jalo todos los rooms que esten activos y UNICOS, y nomas jalo(pluck) sus id's...
+               // $usedRooms = CheckInRoom::get()->where('active','=','1')->unique('room_id')->pluck('room_id')->all();
+                //Ahora, saco todos los rooms, saco solo sus ids(pluck), le resto su arreglo de rooms activos(diff) y vuelvo esa collection un arreglo(all)
+               // $res = Room::get()->pluck('id')->diff($usedRooms)->all();
+                //El problema es que te retorna un arreglo con elementos en indices vacíos (0 -> null) y asi. Esta cosa los "filtra y reasigna"
+               // $freeRooms = array_values(array_filter($res));
+        
+            $usedRooms = CheckInRoom::get()->where('active','=','1')->unique('room_id')->pluck('room_id')->count();
+
+
+        //lo demas
+        $activeKids = CheckIn::whereNull('check_out_date')->get(); //obtiene los registros activos (solo debe haber uno por morro)
+        //Get ids of kids at home and at hospital
+        $homeKidsIds = $activeKids->where('child_status','=','En casa')->pluck('child_id');         
+        $hospitalKidsIds = $activeKids->where('child_status','=','Hospitalizado')->pluck('child_id');
+        
+        //lista de niños en hospital
+        $homeKidsArr = [];
+        foreach($homeKidsIds as $kid_id){
+            $homeKidsArr[] = Child::find($kid_id);
+        }
+        //lista de niños en casa
+        $hospitalKidsArr = [];
+        foreach($hospitalKidsIds as $kid_id){
+            $hospitalKidsArr[] = Child::find($kid_id);
+        }
+        //Cuantos niños hay en el hospital
+        $hospitalCount =  count($hospitalKidsArr);
+        //cuantos niños hay en casa 
+        $homeCount = count($homeKidsArr);       
+        
+
+        return response()->json(array(
+            "total_kids" => $totalKids,
+            "rooms_occupied" => $usedRooms,
+            "hospital_kids_count" => $hospitalCount,
+            "home_kids_count" => $homeCount,
+            "hospital_kids" => $hospitalKidsArr,
+            "home_kids" => $homeKidsArr
+        ),200);
+
     }
+
 }
