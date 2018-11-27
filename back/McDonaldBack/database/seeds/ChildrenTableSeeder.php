@@ -111,10 +111,31 @@ class ChildrenTableSeeder extends Seeder
             'state_id' => 19, //Jalisco
             'phone_1' => "01 33 3825 7999",
             'phone_2' => "271 786-8650",
-            'social' => "611-04-6773",
+            'social' => "662-05-3970",
             'zone_type' => "Urbana",
             'min_wage' => "<1"
         ]);
+        DB::table('children')->insert([
+            'names' => "Rosa",
+            'flast_name' => "Rojo",
+            'mlast_name' => "Rivas",
+            'birthday' => Carbon::parse('2017-04-02'),
+            'sex' => "Femenino",
+            'scholarship_id' => 2,
+            'address_street' => "MORELOS",
+            'address_number' => " 405",
+            'neighborhood' => "GUADALUPE",
+            'locality' => "Tampico",
+            'municipality' => "TAMAULIPAS",
+            'zip_code' => "89120",
+            'state_id' => 30, //TAMAULIPAS
+            'phone_1' => "01 833 213 7540",
+            'phone_2' => "271 786-8650",
+            'social' => "833 213-7540",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+        
 
         DB::table('children')->insert([
             'names' => "Enrique",
