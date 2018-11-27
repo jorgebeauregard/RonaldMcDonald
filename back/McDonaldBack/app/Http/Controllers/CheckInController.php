@@ -143,6 +143,11 @@ class CheckInController extends Controller
                         $checkin->room = $room;    
                     }
                 }
+
+                $companions = $checkin->companions()->get();
+                $checkin->companions = $companions;
+
+                //$checkInCompanion = Ch
             }
 
 
