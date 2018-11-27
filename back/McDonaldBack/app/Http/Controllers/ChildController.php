@@ -23,17 +23,17 @@ class ChildController extends Controller
                 $state = $child->state()->get();
 
                 if($state != null){
-                    $state = $state[0];
+                    $state = $state[0]->name;
                 }
 
                 if($scholarship != null){
-                    $scholarship = $scholarship[0];
+                    $scholarship = $scholarship[0]->name;
                 }
-
-                $child->transport = $transport;
-                $child->ration = $ration;
                 $child->scholarship = $scholarship;
                 $child->state = $state;
+                $child->transport = $transport;
+                $child->ration = $ration;
+                
             }
             return $childs;
         }
@@ -45,6 +45,22 @@ class ChildController extends Controller
                 ),404);
             }
             else{
+                $transport = $child->transport()->get();
+                $ration = $child->ration()->get();
+                $scholarship = $child->scholarship()->get();
+                $state = $child->state()->get();
+
+                if($state != null){
+                    $state = $state[0]->name;
+                }
+                if($scholarship != null){
+                    $scholarship = $scholarship[0]->name;
+                }
+                $child->scholarship = $scholarship;
+                $child->state = $state;
+                $child->transport = $transport;
+                $child->ration = $ration;
+
                 return $child;
             }
         }
