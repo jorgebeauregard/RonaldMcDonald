@@ -336,6 +336,26 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "<1"
         ]);
          DB::table('children')->insert([
+            'names' => "Abraham",
+            'flast_name' => "Leal",
+            'mlast_name' => "Garambuyo",
+            'birthday' => Carbon::parse('2003-07-05'),
+            'sex' => "Masculino",
+            'scholarship_id' => 5,
+            'address_street' => "Paseo Solidaridadn",
+            'address_number' => "10494",
+            'neighborhood' => "Las Delicias",
+            'locality' => "Irapuato",
+            'municipality' => "Guanajuato",
+            'zip_code' => "10494",
+            'state_id' => 17, //Guanajuato
+            'phone_1' => "+52(545)-9443867",
+            'phone_2' => "",
+            'social' => "642-27-0000",
+            'zone_type' => "Sub-Urbana",
+            'min_wage' => "<1"
+        ]);
+         DB::table('children')->insert([
             'names' => "",
             'flast_name' => "",
             'mlast_name' => "",
@@ -355,7 +375,6 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Urbana",
             'min_wage' => "<1"
         ]);
-
 
         DB::table('children')->insert([
             'names' => "Enrique",
