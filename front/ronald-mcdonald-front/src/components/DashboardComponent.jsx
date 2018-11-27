@@ -28,11 +28,11 @@ class DashboardComponent extends Component {
                                     </div>
 
                                     <div className="column">
-                                        <DashboardCardComponent type="registeredChildren"/>
+                                        <a href="/children"><DashboardCardComponent type="registeredChildren"/></a>
                                     </div>
 
                                     <div className="column">
-                                        <DashboardCardComponent type="availableRooms"/>  
+                                        <a href="/rooms"><DashboardCardComponent type="availableRooms"/></a>  
                                     </div>
 
                                     <div className="column">
@@ -42,6 +42,7 @@ class DashboardComponent extends Component {
                                     <div className="column">
                                         <DashboardCardComponent type="childrenAtHome"/>
                                     </div>
+
                                 </div>
 
                                 <div className="columns">

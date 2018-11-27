@@ -9,9 +9,13 @@ class CompanionComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get('http://127.0.0.1:8000/api/companions/' + this.props.match.params.id).then(res => {
+        await axios.get('http://127.0.0.1:8000/api/companions/' + this.props.match.params.id)
+        .then(res => {
             this.setState({companion: res.data});
             console.log(this.state.companion);
+        })
+        .catch(function(error){
+            window.location.replace('/error');
         });
     }
 

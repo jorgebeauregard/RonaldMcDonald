@@ -12,15 +12,17 @@ class ChildComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get(global.globalURL + '/api/children/' + this.props.match.params.id).then(res => {
+        await axios.get(global.globalURL + '/api/children/' + this.props.match.params.id)
+        .then(res => {
             this.setState({child: res.data});
+        })
+        .catch(function(error){
+            window.location.replace('/error');
         });
 
         await axios.get(global.globalURL + '/api/children/companions/' + this.props.match.params.id).then(res => {
-            console.log(res);
             this.setState({companions: res.data});
         });
-
     }
 
     renderCompanions(){
@@ -46,7 +48,7 @@ class ChildComponent extends Component {
     }
 
     render() { 
-        return ( 
+        return (
             <div>
                 <div className="columns margin-top">
                     <div className="column">
@@ -70,7 +72,7 @@ class ChildComponent extends Component {
                     </div>
                 </div>
 
-                <div className="columns is-multilin">
+                <div className="columns is-multiline">
                     <div className="column is-two-fifths">
                         <div className="columns is-multiline">
                             <div className="column is-fullwdith">

@@ -1,3 +1,3 @@
 export const global = {
-    globalURL: "http://10.50.87.164:8000"
+    globalURL: "http://127.0.0.1:8000"
 }
