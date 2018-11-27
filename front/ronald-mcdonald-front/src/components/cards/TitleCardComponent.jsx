@@ -25,6 +25,9 @@ class TitleCardComponent extends Component {
             case 'danger':
                 this.setState({background: "card has-background-danger animated zoomIn"});
                 break;
+            case 'link':
+                this.setState({background: "card has-background-link animated zoomIn"});
+                break;
         }
     }
 
@@ -32,7 +35,7 @@ class TitleCardComponent extends Component {
         return (  
             <div className={this.state.background}>
                 <div className="card-content">
-                    <p className="title is-4 has-text-white">{this.state.title}</p>
+                    <p className="title is-3 has-text-white">{this.state.title}</p>
                 </div>
             </div>
         );

@@ -9,6 +9,8 @@ import ChildComponent from './components/ChildComponent';
 import ChildrenComponent from './components/ChildrenComponent';
 import CompanionComponent from './components/CompanionComponent';
 import DashboardComponent from './components/DashboardComponent';
+import RoomComponent from './components/RoomComponent';
+import RegisterChildrenComponent from './components/RegisterChildrenComponent';
 
 class App extends Component {
   render() {
@@ -20,8 +22,10 @@ class App extends Component {
             <div>
               <Route path="/" component={DashboardComponent} exact />
               <Route path="/children" component={ChildrenComponent} exact/>
-              <Route path="/children/:id" component={ChildComponent} exact/>
+              <Route path="/registerChild" component={RegisterChildrenComponent}/>
+              <Route path="/children/:id" component={ChildComponent} exact strict/>
               <Route path="/companions/:id" component={CompanionComponent} />
+              <Route path="/rooms" component={RoomComponent}/>
             </div>
           </BrowserRouter>
         </div>
