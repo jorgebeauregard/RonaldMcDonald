@@ -84,6 +84,7 @@ Route::group(['middleware' => 'cors'], function() {
     Route::put('/diet/{id}', 'DietController@update'); //U
     Route::delete('/diet',   'DietController@delete'); //D
 
+    Route::get('/room/kids',   'RoomController@kids'); //D
     //Room
     Route::post('/room',     'RoomController@create'); //C
     Route::get('/room',      'RoomController@read');   //R
@@ -91,5 +92,12 @@ Route::group(['middleware' => 'cors'], function() {
     Route::put('/room/{id}', 'RoomController@update'); //U
     Route::delete('/room',   'RoomController@delete'); //D
     
+     //Checkin
+     Route::post('/checkin',     'CheckInController@create'); //C
+     Route::get('/checkin',      'CheckInController@read');   //R
+     Route::get('/checkin/{id}', 'CheckInController@read');   //R
+     Route::put('/checkin/{id}', 'CheckInController@update'); //U
+     Route::delete('/checkin',   'CheckInController@delete'); //D
+
     Route::get('/dashboard', 'CheckInController@dashboard');
  });

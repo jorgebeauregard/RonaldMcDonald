@@ -13,6 +13,7 @@ use App\Diet;
 use App\SocialWorker;
 use App\CheckIn;
 use App\CheckInRoom;
+use App\Room;
 
 //Nota: Cuando borres check in, desactiva room(solo si es el unico activo)
 //muchos checkinroom pueden tener ACTIVO haciendo referencia a un room_id
@@ -98,7 +99,68 @@ class CheckInController extends Controller
     }
 
     public function read(Request $request){
-        
+        if($request->id == null){
+
+            //Get all rooms with the names of the occupied names
+            $checkins = CheckIn::get();
+            foreach($checkins as $checkin){
+                $child = Child::find($checkin->child_id);
+                if($child != null){
+                    $checkin->child = $child; 
+                }
+                
+                $doctor = Doctor::find($checkin->doctor_id);
+                if($doctor != null){
+                    $checkin->doctor = $doctor; 
+                }
+
+                $diagnosis = Diagnosis::find($checkin->diagnosis_id);
+                if($diagnosis != null){
+                    $checkin->diagnosis = $diagnosis; 
+                }
+
+                $treatment = Treatment::find($checkin->treatment_id);
+                if($treatment != null){
+                    $checkin->treatment = $treatment; 
+                }
+
+
+                $diet = Diet::find($checkin->diet_id);
+                if($diet != null){
+                    $checkin->diet = $diet; 
+                }
+
+                $social_worker = SocialWorker::find($checkin->social_worker_id);
+                if($social_worker != null){
+                    $checkin->social_worker = $social_worker; 
+                }
+
+
+                $checkinRoom = CheckInRoom::find($checkin->id);
+                if($checkinRoom != null){
+                    $room = Room::find($checkinRoom->room_id);
+                    if($room != null){
+                        $checkin->room = $room;    
+                    }
+                }
+            }
+
+
+            return response()->json(array(
+                "data" => $checkins
+            ),200);
+        }
+        else{
+            
+            if ($room == null) {
+                return response()->json(array(
+                    "error" => "id ".$request->id." not found"
+                ),404);
+            }
+            else{
+                return response()->json(array("data" => $room),200);
+            }
+        }
     }
 
     public function update(Request $request){
