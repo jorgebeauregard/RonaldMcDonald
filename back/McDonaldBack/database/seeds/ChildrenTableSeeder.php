@@ -356,23 +356,23 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "<1"
         ]);
          DB::table('children')->insert([
-            'names' => "",
-            'flast_name' => "",
-            'mlast_name' => "",
-            'birthday' => Carbon::parse('2006-10-11'),
-            'sex' => "Masculino",
-            'scholarship_id' => 6,
-            'address_street' => "",
-            'address_number' => "",
-            'neighborhood' => "",
-            'locality' => "",
-            'municipality' => "",
-            'zip_code' => "36500",
-            'state_id' => 17, //Guanajuato
-            'phone_1' => "01 800 711 2222",
+            'names' => "Reina",
+            'flast_name' => "Barbero",
+            'mlast_name' => "Cordero",
+            'birthday' => Carbon::parse('2018-04-18'),
+            'sex' => "Femenino",
+            'scholarship_id' => 1,
+            'address_street' => "Rio fuerte",
+            'address_number' => "53",
+            'neighborhood' => "Ahome",
+            'locality' => "Los Mochis",
+            'municipality' => "Sinaloa",
+            'zip_code' => "81240",
+            'state_id' => 27, //Sinaloa
+            'phone_1' => "+52(434)-9114887",
             'phone_2' => "",
-            'social' => "246-72-2292",
-            'zone_type' => "Urbana",
+            'social' => "876-43-5478",
+            'zone_type' => "Sub-Urbana",
             'min_wage' => "<1"
         ]);
           DB::table('children')->insert([
