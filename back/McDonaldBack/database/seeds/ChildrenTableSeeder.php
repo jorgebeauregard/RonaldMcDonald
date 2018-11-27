@@ -96,6 +96,27 @@ class ChildrenTableSeeder extends Seeder
         ]);
 
         DB::table('children')->insert([
+            'names' => "Ricardo",
+            'flast_name' => "Mateo",
+            'mlast_name' => "Jaimes",
+            'birthday' => Carbon::parse('2017-10-18'),
+            'sex' => "Masculino",
+            'scholarship_id' => 1,
+            'address_street' => "SANTA TERESITA",
+            'address_number' => "44600",
+            'neighborhood' => "JALISCO",
+            'locality' => "Guadalajara",
+            'municipality' => "Jalisco",
+            'zip_code' => "94550",
+            'state_id' => 19, //Jalisco
+            'phone_1' => "01 33 3825 7999",
+            'phone_2' => "271 786-8650",
+            'social' => "611-04-6773",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+
+        DB::table('children')->insert([
             'names' => "Enrique",
             'flast_name' => "Lozada",
             'mlast_name' => "Vega",
