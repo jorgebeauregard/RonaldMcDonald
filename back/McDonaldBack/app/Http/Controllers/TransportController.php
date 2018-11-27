@@ -19,7 +19,7 @@ class TransportController extends Controller
             ),400);
         }
 
-        $transport = transport::create([
+        $transport = Transport::create([
             "child_id" => $request->child_id,
             "transport_count" => $request->transport_count,
             "transport_date" => $request->transport_date
@@ -41,11 +41,11 @@ class TransportController extends Controller
     public function read(Request $request){
         if($request->id == null){
             return response()->json(array(
-                "data" => transport::get()
+                "data" => Transport::get()
             ),200);
         }
         else{
-            $transport = transport::find($request->id);
+            $transport = Transport::find($request->id);
             if ($transport == null) {
                 return response()->json(array(
                     "error" => "id ".$transport->id." not found"
@@ -70,7 +70,7 @@ class TransportController extends Controller
             ),400);
         }
 
-        $transport = transport::findOrFail($request->id);
+        $transport = Transport::findOrFail($request->id);
   
         if ($transport->update($request->all())) {
             return response()->json(array("data" => $transport),200);
@@ -80,7 +80,7 @@ class TransportController extends Controller
     }
 
     public function delete(Request $request){
-        $transport = transport::findOrFail($request->id);
+        $transport = Transport::findOrFail($request->id);
         
         if(!$transport->delete()){
             return response()->json(array(
