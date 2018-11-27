@@ -3,6 +3,7 @@
     require_once('fpdf.php');
     require_once('check.php');
     require_once('masterVars.php');
+    require_once('apiManager.php');
 
     $verbose = 0;
 
