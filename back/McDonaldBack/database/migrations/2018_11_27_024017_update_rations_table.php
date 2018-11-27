@@ -25,6 +25,8 @@ class UpdateRationsTable extends Migration
      */
     public function down()
     {
-        $table->dropColumn('delivery_date');
+        Schema::table('rations', function($table) {
+            $table->dropColumn('delivery_date');
+        });
     }
 }
