@@ -93,11 +93,13 @@ Route::group(['middleware' => 'cors'], function() {
     Route::delete('/room',   'RoomController@delete'); //D
     
      //Checkin
+     Route::get('/dashboard', 'CheckInController@dashboard');
+     Route::get('/checkin/room', 'CheckInController@rooms');
+
      Route::post('/checkin',     'CheckInController@create'); //C
      Route::get('/checkin',      'CheckInController@read');   //R
      Route::get('/checkin/{id}', 'CheckInController@read');   //R
      Route::put('/checkin/{id}', 'CheckInController@update'); //U
      Route::delete('/checkin',   'CheckInController@delete'); //D
 
-    Route::get('/dashboard', 'CheckInController@dashboard');
  });

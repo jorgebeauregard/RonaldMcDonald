@@ -271,4 +271,17 @@ class CheckInController extends Controller
 
     }
 
+    public function rooms(Request $request){
+        $checkinRooms = CheckInRoom::get();
+        foreach($checkinRooms as $cir){
+            $room = Room::find($cir->room_id);
+            if($room != null){
+                $cir->room = $room;
+            }
+        }
+        return response()->json(array(
+            "data" => $checkinRooms
+        ),200);
+    }
+
 }
