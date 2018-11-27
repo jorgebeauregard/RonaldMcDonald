@@ -15,16 +15,19 @@ class RationsTableSeeder extends Seeder
         $ration = new Ration();
         $ration->child_id = 1;
         $ration->ration_count = 3;
+        $ration->delivery_date = "2018-11-28";
         $ration->save();
 
         $ration = new Ration();
         $ration->child_id = 2;
         $ration->ration_count = 3;
+        $ration->delivery_date = "2018-11-28";
         $ration->save();
 
         $ration = new Ration();
         $ration->child_id = 3;
         $ration->ration_count = 3;
+        $ration->delivery_date = "2018-11-28";
         $ration->save();
 
     
