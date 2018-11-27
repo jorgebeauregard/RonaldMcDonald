@@ -36,7 +36,7 @@ class RationController extends Controller
         }
 
         return response()->json(array(
-            "data" => $state
+            "data" => $ration
         ),200);
     }
 
@@ -54,7 +54,7 @@ class RationController extends Controller
                 ),404);
             }
             else{
-                return response()->json(array("data" => $state),200);
+                return response()->json(array("data" => $ration),200);
             }
         }
     }
