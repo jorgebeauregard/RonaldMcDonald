@@ -234,151 +234,151 @@ class DoctorsTableSeeder extends Seeder
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "FRANCISCO JOSE",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JUAN JOSE",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JUAN FRANCISCO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "RAUL",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "DANIEL",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JOSEP",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "MARIO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "MARCOS",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "AGUSTIN",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "NICOLAS",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JOSE ANTONIO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "SERGIO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JULIAN",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JOSE MIGUEL",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "FRANCISCO JOSE",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "EUGENIO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "ALVARO",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "XAVIER",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "RUBEN",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "FRANCISCO JOSE",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JOSE LUIS",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "ANDRES",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "CARLOS",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "ENRIQUE",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
         
         DB::table('doctors')->insert([
-            'names'=> "Kevin",
+            'names'=> "JOSE ANGEL",
             'flast_name'=> "Sanchez",
             'mlast_name'=> "Perez",
         ]);
