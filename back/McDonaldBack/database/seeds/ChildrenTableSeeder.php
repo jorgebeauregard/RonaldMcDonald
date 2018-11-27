@@ -255,6 +255,26 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Rural",
             'min_wage' => "1"
         ]);
+        DB::table('children')->insert([
+            'names' => "Lorena",
+            'flast_name' => "Galvan",
+            'mlast_name' => "Victoria",
+            'birthday' => Carbon::parse('2000-09-23'),
+            'sex' => "Femenino",
+            'scholarship_id' => 6,
+            'address_street' => "Chichimeca",
+            'address_number' => "03",
+            'neighborhood' => "Villas Chautenco",
+            'locality' => "Cuautlaxingo",
+            'municipality' => "Puebla",
+            'zip_code' => "72730",
+            'state_id' => 1, //Publa
+            'phone_1' => "2945985",
+            'phone_2' => "",
+            'social' => "112-055-1112",
+            'zone_type' => "Urbana",
+            'min_wage' => "3"
+        ]);
          DB::table('children')->insert([
             'names' => "",
             'flast_name' => "",
