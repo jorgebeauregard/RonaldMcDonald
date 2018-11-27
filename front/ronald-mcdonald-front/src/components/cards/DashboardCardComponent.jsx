@@ -38,31 +38,35 @@ class DashboardCardComponent extends Component {
                 this.setState({title: "Niños en hospital"});
                 this.setState({content: "13/27"});
                 break;
+            case 'childrenAtHospital2':
+                this.setState({background: "card has-background-link animated zoomIn"});
+                this.setState({icon: "fas fa-3x fa-glasses"});
+                this.setState({title: "Niños en hospital 2"});
+                this.setState({content: "13/27"});
+                break;
         }
     }
 
     render() { 
         return ( 
             <div>
-                <a href="/children">
-                    <div className={this.state.background}>
-                        <div className="card-content">
-                            <div className="columns">
-                                <div className="column is-one-fifth">
-                                    <span className="icon has-text-white padding">
-                                        <i className={this.state.icon}></i>
-                                    </span>
-                                </div>
-                                <div className="column">
-                                    <div className="content">
-                                        <p className="title is-5 has-text-white has-text-right has-text-left-mobile">{this.state.title}</p>
-                                        <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">{this.state.content}</p>
-                                    </div>
+                <div className={this.state.background}>
+                    <div className="card-content">
+                        <div className="columns">
+                            <div className="column is-one-fifth">
+                                <span className="icon has-text-white padding">
+                                    <i className={this.state.icon}></i>
+                                </span>
+                            </div>
+                            <div className="column">
+                                <div className="content">
+                                    <p className="title is-5 has-text-white has-text-right has-text-left-mobile">{this.state.title}</p>
+                                    <p className="subtitle is-1 has-text-white has-text-right has-text-left-mobile">{this.state.content}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         );
     }

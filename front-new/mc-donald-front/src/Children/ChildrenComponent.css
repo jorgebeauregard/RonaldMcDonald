@@ -1,0 +1,11 @@
+.hack1 {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+  
+.hack2 {
+  display: table-cell;
+  overflow-x: auto;
+  width: 100%;
+}

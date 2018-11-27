@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Table, Tr, Td } from "reactable";
-import axios from 'axios';
 import { global } from './../global';
+import axios from 'axios';
+import Fade from 'react-reveal';
+import {Link} from 'react-router-dom';
+
 import './ChildrenComponent.css';
-import TitleCardComponent from './cards/TitleCardComponent';
+
+import TitleCard from '../General Purpose/TitleCard';
 
 export default class ChildrenComponent extends Component {
     state = {
@@ -11,8 +15,9 @@ export default class ChildrenComponent extends Component {
     };
 
     async componentDidMount(){
-        await axios.get(global.globalURL + '/api/children').then(res => {
+        await axios.get(global.globalURL + '/child').then(res => {
             this.setState({children: res.data});
+            console.log(this.state.children);
         });
     }
 
@@ -30,11 +35,12 @@ export default class ChildrenComponent extends Component {
                     <Td column="Info.">
                         <div className="columns">
                             <div className="column">
-                                <a className="button has-background-primary has-text-white" href={'/children/'+child.id}>
+                                <Link to={'/children/' + child.id}><a className="button has-background-primary has-text-white" href={'/children/'+ child.id}>
                                     <span className="icon is-small">
                                     <i className="fas fa-info"></i>
                                     </span>
                                 </a>
+                                </Link>
                             </div>
                         </div>    
                     </Td>
@@ -42,7 +48,6 @@ export default class ChildrenComponent extends Component {
             )
         )
     }
-    
     
 
     renderTable() {
@@ -69,9 +74,11 @@ export default class ChildrenComponent extends Component {
     render() {
         return (
         <div>
-            <div className="columns is-multiline">
-                <div className="column is-full margin-top">
-                    <TitleCardComponent title="Niños registrados" background="link"/>
+            <div className="columns is-multiline margin-top">
+                <div className="column is-12">
+                    <Fade top>
+                        <TitleCard title="Niños registrados" background="primary"></TitleCard>
+                    </Fade>
                 </div>
 
                 <div className="column is-full">

@@ -1,0 +1,50 @@
+.container{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.margin-top{
+  margin-top: 10px;
+}
+
+.margin-top-small{
+  margin-top: 17px;
+}
+
+.card{
+  box-shadow: 0px 2px 15px rgba(0,0,0,0.1);
+}
+
+.nav-logo{
+  margin-top:5px;
+}
+
+.nav-burger{
+  margin-top:9px;
+}
+
+.logo{
+  width:160px;
+  height:60px;
+}
+
+.reactable-previous-page{
+  color: #2f1e91 !important;
+  margin-right: 10px !important;
+}
+
+.reactable-next-page{
+  color: #2f1e91 !important;
+  margin-right: 10px !important;
+}
+
+.reactable-page-button{
+  margin-right: 10px !important;
+}
+
+.has-background-warning{
+  background-color: rgb(233, 191, 22) !important;
+}
+
+.is-warning{
+  background-color: rgb(233, 191, 22) !important;
+}
