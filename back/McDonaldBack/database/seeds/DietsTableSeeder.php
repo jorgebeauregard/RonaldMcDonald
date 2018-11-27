@@ -15,6 +15,9 @@ class DietsTableSeeder extends Seeder
             'name' => "Normal"
         ]);
         DB::table('diets')->insert([
+            'name' => "Terapeutica"
+        ]);
+        DB::table('diets')->insert([
             'name' => "Blanda"
         ]);
         DB::table('diets')->insert([
