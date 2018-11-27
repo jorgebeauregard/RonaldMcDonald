@@ -316,24 +316,24 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "5"
         ]);
          DB::table('children')->insert([
-            'names' => "",
-            'flast_name' => "",
-            'mlast_name' => "",
-            'birthday' => Carbon::parse('2006-10-11'),
+            'names' => "Tulio",
+            'flast_name' => "Padilla",
+            'mlast_name' => "Gil",
+            'birthday' => Carbon::parse('2000-03-24'),
             'sex' => "Masculino",
-            'scholarship_id' => 6,
-            'address_street' => "",
-            'address_number' => "",
-            'neighborhood' => "",
-            'locality' => "",
-            'municipality' => "",
-            'zip_code' => "36500",
+            'scholarship_id' => 1,
+            'address_street' => "Calle Lagunilla",
+            'address_number' => "677",
+            'neighborhood' => "12 de Diciembre",
+            'locality' => "Irapuato",
+            'municipality' => "Guanajuato",
+            'zip_code' => "95515",
             'state_id' => 17, //Guanajuato
-            'phone_1' => "01 800 711 2222",
+            'phone_1' => "+52(131)-1999125",
             'phone_2' => "",
-            'social' => "246-72-2292",
-            'zone_type' => "Urbana",
-            'min_wage' => "<1"
+            'social' => "229-45-1158",
+            'zone_type' => "Sub-Urbana",
+            'min_wage' => "3"
         ]);
          DB::table('children')->insert([
             'names' => "Abraham",
@@ -356,6 +356,26 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "<1"
         ]);
          DB::table('children')->insert([
+            'names' => "",
+            'flast_name' => "",
+            'mlast_name' => "",
+            'birthday' => Carbon::parse('2006-10-11'),
+            'sex' => "Masculino",
+            'scholarship_id' => 6,
+            'address_street' => "",
+            'address_number' => "",
+            'neighborhood' => "",
+            'locality' => "",
+            'municipality' => "",
+            'zip_code' => "36500",
+            'state_id' => 17, //Guanajuato
+            'phone_1' => "01 800 711 2222",
+            'phone_2' => "",
+            'social' => "246-72-2292",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+          DB::table('children')->insert([
             'names' => "",
             'flast_name' => "",
             'mlast_name' => "",
