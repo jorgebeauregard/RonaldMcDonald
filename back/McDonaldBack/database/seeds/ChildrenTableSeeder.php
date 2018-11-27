@@ -196,20 +196,20 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "<1"
         ]);
         DB::table('children')->insert([
-            'names' => "",
-            'flast_name' => "",
-            'mlast_name' => "",
-            'birthday' => Carbon::parse('2006-10-11'),
+            'names' => "Samuel",
+            'flast_name' => "Albero",
+            'mlast_name' => "Muela",
+            'birthday' => Carbon::parse('2010-03-29'),
             'sex' => "Masculino",
-            'scholarship_id' => 5,
-            'address_street' => "",
-            'address_number' => "",
-            'neighborhood' => "",
-            'locality' => "",
-            'municipality' => "",
-            'zip_code' => "36500",
-            'state_id' => 17, //Guanajuato
-            'phone_1' => "01 800 711 2222",
+            'scholarship_id' => 4,
+            'address_street' => "Juares",
+            'address_number' => "108",
+            'neighborhood' => "Col Centro",
+            'locality' => "Ciudad Madero",
+            'municipality' => "Tamaulipas",
+            'zip_code' => "89400",
+            'state_id' => 30, //Tamaulipas
+            'phone_1' => "01 833 210 1195",
             'phone_2' => "",
             'social' => "246-72-2292",
             'zone_type' => "Urbana",
