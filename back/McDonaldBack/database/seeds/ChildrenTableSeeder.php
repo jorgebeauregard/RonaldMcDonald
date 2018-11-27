@@ -281,7 +281,7 @@ class ChildrenTableSeeder extends Seeder
             'mlast_name' => "Aguirre",
             'birthday' => Carbon::parse('2001-01-30'),
             'sex' => "Masculino",
-            'scholarship_id' => 5,
+            'scholarship_id' => 6,
             'address_street' => "Rincon Dragos",
             'address_number' => "27",
             'neighborhood' => "Rincon Arboledas",
@@ -296,12 +296,52 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "3"
         ]);
          DB::table('children')->insert([
+            'names' => "Juan",
+            'flast_name' => "Calleros",
+            'mlast_name' => "Calleros",
+            'birthday' => Carbon::parse('2001-1-1'),
+            'sex' => "Masculino",
+            'scholarship_id' => 6,
+            'address_street' => "Atlixcayotl",
+            'address_number' => "5718",
+            'neighborhood' => "Reserva Territorial Atlixcayotl",
+            'locality' => "Puebla",
+            'municipality' => "Puebla",
+            'zip_code' => "72453",
+            'state_id' => 1, //Pur
+            'phone_1' => "01 222 303 2000",
+            'phone_2' => "",
+            'social' => "702-54-1138",
+            'zone_type' => "Urbana",
+            'min_wage' => "5"
+        ]);
+         DB::table('children')->insert([
             'names' => "",
             'flast_name' => "",
             'mlast_name' => "",
             'birthday' => Carbon::parse('2006-10-11'),
             'sex' => "Masculino",
-            'scholarship_id' => 5,
+            'scholarship_id' => 6,
+            'address_street' => "",
+            'address_number' => "",
+            'neighborhood' => "",
+            'locality' => "",
+            'municipality' => "",
+            'zip_code' => "36500",
+            'state_id' => 17, //Guanajuato
+            'phone_1' => "01 800 711 2222",
+            'phone_2' => "",
+            'social' => "246-72-2292",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+         DB::table('children')->insert([
+            'names' => "",
+            'flast_name' => "",
+            'mlast_name' => "",
+            'birthday' => Carbon::parse('2006-10-11'),
+            'sex' => "Masculino",
+            'scholarship_id' => 6,
             'address_street' => "",
             'address_number' => "",
             'neighborhood' => "",
