@@ -31,6 +31,8 @@ class DietsTableSeeder extends Seeder
         ]);
         DB::table('diets')->insert([
             'name' => "Restringida"
+        ]);DB::table('diets')->insert([
+            'name' => "otra"
         ]);
     }
 
