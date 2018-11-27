@@ -83,3 +83,4 @@ class CheckIn extends Model
         return $this->belongsToMany('App\Companion','check_in_companion','check_in_id','companion_id');
     }
 }
+
