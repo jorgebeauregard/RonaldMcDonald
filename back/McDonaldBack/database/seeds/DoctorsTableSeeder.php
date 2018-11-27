@@ -6,11 +6,17 @@ class DoctorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * 103 doctors inserted
      * @return void
      */
     public function run()
     {
+        DB::table('doctors')->insert([
+            'names'=> "JULIO",
+            'flast_name'=> "GARGALLO",
+            'mlast_name'=> "BAILON",
+        ]);
+
         DB::table('doctors')->insert([
             'names'=> "GARI",
             'flast_name'=> "KASPAROV",
