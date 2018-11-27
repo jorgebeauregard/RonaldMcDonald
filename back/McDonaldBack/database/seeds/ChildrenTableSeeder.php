@@ -48,10 +48,30 @@ class ChildrenTableSeeder extends Seeder
             'zip_code' => "31000",
             'state_id' => 1, //Puebla
             'phone_1' => "01 222 237 9341",
-            'phone_2' => "644.410-5846/644.414-5410/644.413-3878",
+            'phone_2' => "644.410-5846",
             'social' => "526-58-1488",
             'zone_type' => "Urbana",
             'min_wage' => "3"
+        ]);
+        DB::table('children')->insert([
+            'names' => "Mirna",
+            'flast_name' => "Adomo",
+            'mlast_name' => "Lebron",
+            'birthday' => Carbon::parse('2014-09-20'),
+            'sex' => "Femenino",
+            'scholarship_id' => 3,
+            'address_street' => "AV Dr. Carlos Canseco",
+            'address_number' => "611A",
+            'neighborhood' => "Col.Francisco Villa",
+            'locality' => "Puebla",
+            'municipality' => "Puebla",
+            'zip_code' => "31000",
+            'state_id' => 27, //Sinaloa
+            'phone_1' => "01 669 986 6380",
+            'phone_2' => "",
+            'social' => "109-86-9492",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
         ]);
 
         DB::table('children')->insert([
