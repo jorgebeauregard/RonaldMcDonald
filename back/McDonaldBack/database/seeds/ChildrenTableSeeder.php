@@ -155,6 +155,26 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Urbana",
             'min_wage' => "2"
         ]);
+        DB::table('children')->insert([
+            'names' => "Celia",
+            'flast_name' => "Sosa",
+            'mlast_name' => "Castellon",
+            'birthday' => Carbon::parse('2011-01-03'),
+            'sex' => "Femenino",
+            'scholarship_id' => 1,
+            'address_street' => "Ignacio Zaragoza",
+            'address_number' => "113-B",
+            'neighborhood' => "Espiritu Santo",
+            'locality' => "Metepec",
+            'municipality' => "Estado de Mexico",
+            'zip_code' => "52140",
+            'state_id' => 6, //EdoMex
+            'phone_1' => "01 444 813 2829",
+            'phone_2' => "722 216-6393",
+            'social' => "442-90-4667",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
 
 
         DB::table('children')->insert([
