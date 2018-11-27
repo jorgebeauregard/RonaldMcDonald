@@ -123,7 +123,7 @@ class ChildrenTableSeeder extends Seeder
             'sex' => "Femenino",
             'scholarship_id' => 2,
             'address_street' => "MORELOS",
-            'address_number' => " 405",
+            'address_number' => "405",
             'neighborhood' => "GUADALUPE",
             'locality' => "Tampico",
             'municipality' => "TAMAULIPAS",
@@ -135,7 +135,27 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Urbana",
             'min_wage' => "<1"
         ]);
-        
+        DB::table('children')->insert([
+            'names' => "Elena",
+            'flast_name' => "Dominguez",
+            'mlast_name' => "Arenas",
+            'birthday' => Carbon::parse('2000-03-17'),
+            'sex' => "Femenino",
+            'scholarship_id' => 6,
+            'address_street' => "V CARRANZA",
+            'address_number' => "2175",
+            'neighborhood' => "Jardin",
+            'locality' => "San Luis Potosi",
+            'municipality' => "San Luis Potosi",
+            'zip_code' => "78270",
+            'state_id' => 26, //San Luis Potosi
+            'phone_1' => "01 444 813 2829",
+            'phone_2' => "444 813-7263",
+            'social' => "256-85-0068",
+            'zone_type' => "Urbana",
+            'min_wage' => "2"
+        ]);
+
 
         DB::table('children')->insert([
             'names' => "Enrique",
