@@ -14,7 +14,7 @@ class CheckInsTableSeeder extends Seeder
     {
         DB::table('check_ins')->insert([
             'child_id' => 1,
-            'check_in_date' => Carbon::parse('1995-05-12'),
+            'check_in_date' => Carbon::parse('2018-11-27'),
             'hospital_id' => 2,
             'child_status' => 'En casa',
             'doctor_id' => 1,
@@ -23,7 +23,7 @@ class CheckInsTableSeeder extends Seeder
             'diet_id' => 3,
             'social_worker_id' => 5,
             're_entry' => false,
-            'check_out_date' => Carbon::parse('1995-05-12'),
+            'check_out_date' => Carbon::parse('2018-11-29'),
             'additional_children' => 2,
             'remarks' => 'Muy mal chico',
         ]);
@@ -46,7 +46,7 @@ class CheckInsTableSeeder extends Seeder
             //$table->enum('child_status', ['En casa', 'Hospitalizado', 'Extra']);
         DB::table('check_ins')->insert([
             'child_id' => 2,
-            'check_in_date' => Carbon::parse('1995-05-12'),
+            'check_in_date' => Carbon::parse('2018-11-27'),
             'hospital_id' => 3,
             'child_status' => 'En casa',
             'doctor_id' => 1,
@@ -62,7 +62,7 @@ class CheckInsTableSeeder extends Seeder
 
         DB::table('check_ins')->insert([
             'child_id' => 3,
-            'check_in_date' => Carbon::parse('1995-05-12'),
+            'check_in_date' => Carbon::parse('2018-11-27'),
             'hospital_id' => 2,
             'child_status' => 'En casa',
             'doctor_id' => 1,
