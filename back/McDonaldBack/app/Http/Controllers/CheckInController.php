@@ -210,12 +210,34 @@ class CheckInController extends Controller
         //lista de niños en hospital
         $homeKidsArr = [];
         foreach($homeKidsIds as $kid_id){
-            $homeKidsArr[] = Child::find($kid_id);
+            $kid = Child::find($kid_id);
+            $checkIn = CheckIn::where('child_id','=',$kid->id)->whereNull('check_out_date')->first();
+            if($checkIn != null){
+                $checkInRoom = CheckInRoom::find($checkIn->id);
+                if($checkInRoom != null){
+                    $room = Room::find($checkInRoom->room_id);
+                    if($room != null){
+                        $kid->room_name = $room->name;
+                    }
+                }
+            }
+            $homeKidsArr[] = $kid;
         }
         //lista de niños en casa
         $hospitalKidsArr = [];
         foreach($hospitalKidsIds as $kid_id){
-            $hospitalKidsArr[] = Child::find($kid_id);
+            $kid = Child::find($kid_id);
+            $checkIn = CheckIn::where('child_id','=',$kid->id)->whereNull('check_out_date')->first();
+            if($checkIn != null){
+                $checkInRoom = CheckInRoom::find($checkIn->id);
+                if($checkInRoom != null){
+                    $room = Room::find($checkInRoom->room_id);
+                    if($room != null){
+                        $kid->room_name = $room->name;
+                    }
+                }
+            }
+            $hospitalKidsArr[] = $kid;
         }
         //Cuantos niños hay en el hospital
         $hospitalCount =  count($hospitalKidsArr);
