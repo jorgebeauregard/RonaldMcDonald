@@ -59,11 +59,11 @@
     */
     $table = array();
     $startDateDays = $startDate/$secondsInADay;
-    $endDateDays = $startDate/$secondsInADay;
+    $endDateDays = $endDate/$secondsInADay;
     $numDays = $endDateDays - $startDateDays;
     $typeCalc = "days";
 
-    if( $numDays > 31)
+    if($numDays > 31)
     {
         $typeCalc = "weeks";
     }
@@ -90,7 +90,6 @@
     array_push($table[8],"Total Masculino");
     array_push($table[9],"Total Femenino");
 
-
     for($i = $startDate; $i <= $endDate; $i += $secondsInADay)
     {
         array_push($headerUnixTime, $i);
@@ -99,6 +98,71 @@
         array_push($table[1],getChilds($i));
         array_push($table[2],getCompanions($i));
         array_push($table[3],getChilds($i)+getCompanions($i));
+        array_push($table[4],getFamilies($i));
+        array_push($table[5],getLactant($i));
+        array_push($table[6],getHospitalized($i));
+        array_push($table[7],getChilds($i)+getCompanions($i)+getHospitalized($i));
+        array_push($table[8],getMChilds($i)+getMCompanions($i));
+        array_push($table[9],getFChilds($i)+getFCompanions($i));
+    }
+
+    //If more than 31 days found enter week view.
+    if($typeCalc == "weeks")
+    {
+        $header = array();
+        $header[0] = "Semana";
+        for($i = $startDate; $i <= $endDate; $i += $secondsInADay)
+        {
+            array_push($header,date("W",$i));
+        }
+
+        //Collapse days for week view
+        for($i = 0; $i < count($table); $i++)
+        {
+            $table[$i] = collapseSum($header,$table[$i]);
+        }
+        $header = collapse($header,$header);
+
+    }
+
+    function collapse($base,$colapsable)
+    {
+        $result = array();
+        $result[0] = $colapsable[0];
+
+        $sum = 0;
+        for($i = 1; $i<count($base); $i++)
+        {
+            if(($base[$i] != $base[$i-1]) && $i != 1)
+            {
+                array_push($result,$sum);
+                $sum = 0;
+            }
+            $sum = $colapsable[$i];
+        }
+        array_push($result,$sum);
+
+        return $result;
+    }
+
+    function collapseSum($base,$colapsable)
+    {
+        $result = array();
+        $result[0] = $colapsable[0];
+
+        $sum = 0;
+        for($i = 1; $i<count($base); $i++)
+        {
+            if(($base[$i] != $base[$i-1]) && $i != 1)
+            {
+                array_push($result,$sum);
+                $sum = 0;
+            }
+            $sum += $colapsable[$i];
+        }
+        array_push($result,$sum);
+
+        return $result;
     }
 
 
