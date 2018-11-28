@@ -496,25 +496,46 @@ class ChildrenTableSeeder extends Seeder
             'min_wage' => "<1"
         ]);
         DB::table('children')->insert([
-            'names' => "MARIA ANTONIA",
-            'flast_name' => "BAUTISTA",
-            'mlast_name' => "ORTIN",
-            'birthday' => Carbon::parse('2006-05-21'),
+            'names' => "Ana Maria",
+            'flast_name' => "Mena",
+            'mlast_name' => "Vago",
+            'birthday' => Carbon::parse('2007-03-31'),
             'sex' => "Femenino",
-            'scholarship_id' => 4,
-            'address_street' => "Baja California",
-            'address_number' => "3004",
-            'neighborhood' => "Mexico",
-            'locality' => "Tehuacan",
-            'municipality' => "Puebla",
-            'zip_code' => "75764",
-            'state_id' => 1, //Pue
-            'phone_1' => "01 238 107 3248",
-            'phone_2' => "238382-1587",
-            'social' => "320-676-7585",
+            'scholarship_id' => 5,
+            'address_street' => "Av Xochitl",
+            'address_number' => "1263",
+            'neighborhood' => "Prados Tepeyac",
+            'locality' => "Zapopan",
+            'municipality' => "Jalisco",
+            'zip_code' => "45050",
+            'state_id' => 19, //Jalisco
+            'phone_1' => "333344-4444",
+            'phone_2' => "",
+            'social' => "903-678-1521",
             'zone_type' => "Urbana",
-            'min_wage' => "<1"
+            'min_wage' => "1"
         ]);
+        DB::table('children')->insert([
+            'names' => "Ana Maria",
+            'flast_name' => "Mena",
+            'mlast_name' => "Vago",
+            'birthday' => Carbon::parse('2007-03-31'),
+            'sex' => "Femenino",
+            'scholarship_id' => 5,
+            'address_street' => "Av Xochitl",
+            'address_number' => "1263",
+            'neighborhood' => "Prados Tepeyac",
+            'locality' => "Zapopan",
+            'municipality' => "Jalisco",
+            'zip_code' => "45050",
+            'state_id' => 19, //Jalisco
+            'phone_1' => "333344-4444",
+            'phone_2' => "",
+            'social' => "903-678-1521",
+            'zone_type' => "Urbana",
+            'min_wage' => "1"
+        ]);
+
 
 
         DB::table('children')->insert([
