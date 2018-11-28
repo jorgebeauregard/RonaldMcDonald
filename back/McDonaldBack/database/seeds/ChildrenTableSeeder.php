@@ -555,6 +555,46 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Urbana",
             'min_wage' => "4"
         ]);
+        DB::table('children')->insert([
+            'names' => "",
+            'flast_name' => "",
+            'mlast_name' => "",
+            'birthday' => Carbon::parse('2000-04-07'),
+            'sex' => "Masculino",
+            'scholarship_id' => 6,
+            'address_street' => "",
+            'address_number' => "",
+            'neighborhood' => "",
+            'locality' => "",
+            'municipality' => "",
+            'zip_code' => "72190",
+            'state_id' => 1, //Puebla
+            'phone_1' => "",
+            'phone_2' => "",
+            'social' => "763-01-1712",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+        DB::table('children')->insert([
+            'names' => "Carla",
+            'flast_name' => "Toro",
+            'mlast_name' => "Pablos",
+            'birthday' => Carbon::parse('2002-01-02'),
+            'sex' => "Femenino",
+            'scholarship_id' => 5,
+            'address_street' => "Av. De La Paz",
+            'address_number' => "57",
+            'neighborhood' => "Alvaro Obregon",
+            'locality' => "San Ángel",
+            'municipality' => "Cd. de México",
+            'zip_code' => "01000",
+            'state_id' => 2, //CDMX
+            'phone_1' => "01 55 5550 7350",
+            'phone_2' => "",
+            'social' => "341-66-2108",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
 
 
 
