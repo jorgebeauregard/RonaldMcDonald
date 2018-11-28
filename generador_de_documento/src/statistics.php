@@ -62,7 +62,7 @@
 
             if($checkinDate == $date)
             {
-                $rooms += count($entry->companions);
+                $rooms += count($entry->rooms);
             }
             else if($checkinDate < $date)
             {
