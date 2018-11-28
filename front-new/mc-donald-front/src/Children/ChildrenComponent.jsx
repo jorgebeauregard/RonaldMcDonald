@@ -5,8 +5,6 @@ import axios from 'axios';
 import Fade from 'react-reveal';
 import {Link} from 'react-router-dom';
 
-import './ChildrenComponent.css';
-
 import TitleCard from '../General Purpose/TitleCard';
 
 export default class ChildrenComponent extends Component {

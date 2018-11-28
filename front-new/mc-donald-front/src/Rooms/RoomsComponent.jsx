@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {global} from './../global';
+import {Link} from 'react-router-dom';
 
 import TitleCard from './../General Purpose/TitleCard';
 import RoomCard from './RoomCard';
@@ -11,24 +12,33 @@ class RoomsComponent extends Component {
     state = {
         rooms:[],
         active_modal: false,
-        child_name: "",
-        child_id: 0
+        active_room: null
     }
 
     async componentDidMount(){
         await axios.get(global.globalURL + '/room/kids').then(res => {
             this.setState({rooms: res.data.data.rooms});
-            console.log(this.state.rooms);
+            console.log();
         });
     }
 
     toggleActiveModal(room){
-        this.setState( () => ({
-            active_modal: !this.state.active_modal
-        }));
+        if(this.state.active_modal){
+            this.setState( () => ({
+                active_modal: false
+            }));
+            this.setState( () => ({
+                active_room: null
+            }));
+        }
+        else{
+            this.setState( () => ({
+                active_modal: true
+            }));       
+        }
 
         if(room){
-            this.setState({child_name: room.child_name});
+            this.setState({active_room: room});
         }
         
     }
@@ -38,11 +48,24 @@ class RoomsComponent extends Component {
             this.state.rooms.map(room =>
                 <div className="column is-2-desktop is-full-mobile is-half-mobile" key={room.id} onClick={()=>{this.toggleActiveModal(room)}}>
                     <Fade>
-                        <a><RoomCard id={room.id} availability={room.child_name ? 'false' : 'true'} child={room.child_name ? room.child_name : ''}></RoomCard></a>
+                        <a><RoomCard id={room.id} availability={room.roomCheckIns.length > 0 ? 'false' : 'true'} child={room.roomCheckIns.length > 0 ? room.roomCheckIns[0].child_name : ''}></RoomCard></a>
                     </Fade>
                 </div>
             )
         )
+    }
+
+    renderChild(){
+        if(this.state.active_room){
+            return(
+                this.state.active_room.roomCheckIns.map(child=>
+                    <li key={child.id}><Link to={'children/' + child.child_id}>{child.child_name}</Link></li>
+                )
+            )
+        }
+        else{
+            return;
+        }
     }
 
     renderModal(){
@@ -54,12 +77,12 @@ class RoomsComponent extends Component {
                             <div className="card-content">
                                 <p className="title is-2 is-size-4-mobile">Niños en el cuarto:</p>
                                 <ul>
-                                    <li className="is-size-4 is-size-6-mobile">{this.state.child_name}</li>
+                                    {this.state.active_room ? this.renderChild() :""}
                                 </ul>
                             </div>
                         </div>
                     </div>
-                <button className="modal-close is-large" aria-label="close"  onClick={()=>{this.toggleActiveModal()}}></button>
+                <button className="modal-close is-large" aria-label="close" onClick={()=>{this.toggleActiveModal()}}></button>
             </div>
         )
     }

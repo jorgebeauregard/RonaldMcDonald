@@ -2,19 +2,6 @@ import React from 'react';
 import TitleCardSmall from './../General Purpose/TitleCardSmall';
 
 const CompanionCard = (props) => {
-
-    function render(){
-        return(
-            props.data.map(companion =>
-                <tr>
-                    <td>companion.names</td>
-                    <td>companion.relationship_name</td>
-                    <td>Hola</td>
-                </tr>
-            )
-        )
-    }
-
     return (   
         <div className="card">
             <div className="card-content">
@@ -28,7 +15,13 @@ const CompanionCard = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {render}
+                        {props.data.map(companion => 
+                            <tr>
+                                <td>{companion.names} {companion.flast_name} {companion.mlast_name}</td>
+                                <td>{companion.relationship_name}</td>
+                                <td><a className="button is-primary"><span className="icon"><i className="fas fa-info"></i></span></a></td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>

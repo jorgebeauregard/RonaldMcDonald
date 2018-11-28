@@ -6,6 +6,7 @@ import RoomsComponent from './Rooms/RoomsComponent';
 import DashboardComponent from './Dashboard/DashboardComponent';
 import ChildComponent from './Child/ChildComponent';
 import ChildrenComponent from './Children/ChildrenComponent';
+import CompanionComponent from './Companion/CompanionComponent';
 import ErrorComponent from './Error/ErrorComponent';
 
 import 'bulma/css/bulma.css'
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path="/rooms" component={RoomsComponent} exact></Route>
               <Route path="/children/:id" component={ChildComponent} exact></Route>
               <Route path="/children" component={ChildrenComponent} exact></Route>
+              <Route path="/companion/:id" component={CompanionComponent} exact></Route>
               <Route path="/404" component={ErrorComponent}></Route>
             </div>
           </Router>

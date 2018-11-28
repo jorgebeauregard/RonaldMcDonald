@@ -3,15 +3,17 @@ import {Fade} from 'react-reveal';
 import { global } from './../global';
 import axios from 'axios';
 import TitleCard from './../General Purpose/TitleCard';
-import TitleCardSmall from './../General Purpose/TitleCardSmall'
 import GeneralInformationCard from './GeneralInformationCard';
 import CompanionCard from './CompanionCard';
 import VisitHistoryCard from './VisitHistoryCard';
+import CurrentCheckInCard from './CurrentCheckInCard';
 
 class ChildComponent extends Component {
     state = { 
         child: {},
-        companions: []
+        companions: [],
+        checkInHistory: [],
+        currentData: null
     }
 
     async componentDidMount(){
@@ -20,9 +22,24 @@ class ChildComponent extends Component {
             this.setState({child: res.data});
         })
 
+        await axios.get(global.globalURL + '/child/checkin/current/' + this.props.match.params.id).then(res => {
+            this.setState({currentData: res.data});
+            
+        });
+
+        for(var i = 0; i<100000; i++){} //Lo siento tanto
+        
+        await axios.get(global.globalURL + '/child/checkin/' + this.props.match.params.id)
+        .then(res => {
+            this.setState({checkInHistory: res.data});
+        })
+
+        
         await axios.get(global.globalURL + '/child/companions/' + this.props.match.params.id).then(res => {
             this.setState({companions: res.data});
         });
+
+        
     }
 
     render() { 
@@ -39,37 +56,14 @@ class ChildComponent extends Component {
                 <div className="columns is-multiline">
                     <div className="column is-5">
                         <div className="columns is-multiline">
+                        {this.state.currentData ? 
                             <div className="column is-12">
                                 <Fade left>
-                                    <div className="card">
-                                        <div className="card-content">
-                                            <TitleCardSmall title="Información de estadía actual" background="success"></TitleCardSmall>
-                                            <div className="columns is-multiline margin-top">
-                                                <div className="column is-4">
-                                                    <p className="title is-5">Ubicación:</p>
-                                                    <p className="subtitle has-text-danger">En hospital</p>
-                                                </div>
-                                                <div className="column is-4">
-                                                    <p className="title is-5">Fecha de ingreso:</p>
-                                                    <p className="subtitle">15/05/2018</p>
-                                                </div>
-                                                <div className="column is-4">
-                                                    <p className="title is-5">Doctor:</p>
-                                                    <p className="subtitle">Juan Pablo Flores</p>
-                                                </div>
-                                                <div className="column is-4">
-                                                    <p className="title is-5">Diagnóstico:</p>
-                                                    <p className="subtitle">Diabetes</p>
-                                                </div>
-                                                <div className="column is-4">
-                                                    <p className="title is-5">Tratamiento:</p>
-                                                    <p className="subtitle">No azúcar</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <CurrentCheckInCard data={this.state.currentData}/>
                                 </Fade>
                             </div>
+                        :
+                        ""}
                             <div className="column is-12">
                                 <Fade left>
                                     <CompanionCard data={this.state.companions}/>
@@ -87,7 +81,7 @@ class ChildComponent extends Component {
                             </div>
                             <div className="column is-12">
                                 <Fade right>
-                                    <VisitHistoryCard/>
+                                    <VisitHistoryCard data={this.state.checkInHistory}/>
                                 </Fade>
                             </div>
                         </div>
