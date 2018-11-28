@@ -1,8 +1,11 @@
 <?php
 
+    function getNameStart(){ return "inicio"; }
+    function getNameEnd(){ return"fin"; } 
+
     $error_date = "Fecha en formato incorrecto.";
     $error_check = "Los argumentos de inicio y termino no existen. intente utilizar <br> 
-        start_date=fechdeinicio&end_date=fechadetermino <br>    
+        ".getNameStart()."=fechdeinicio&".getNameEnd()."=fechadetermino <br>    
     ";
 
     function showError($errvar)

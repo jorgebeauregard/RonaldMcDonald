@@ -38,5 +38,8 @@
         return $decoded;
     }
 
-    
+    function preloadCheckin()
+    {
+        $GLOBALS["checkin"] = getFromApi("checkin/");
+    }
 ?>

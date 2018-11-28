@@ -14,7 +14,7 @@
     {
         $dataExists = false;
 
-        if( isset($_GET["start_date"]) )
+        if( isset($_GET[getNameStart()]) )
         {
             $dataExists = true;
         }else
@@ -22,7 +22,7 @@
             $dataExists = false;
         }
 
-        if( isset($_GET["end_date"]) )
+        if( isset($_GET[getNameEnd()]) )
         {
             $dataExists = true;
         }else
