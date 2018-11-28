@@ -112,7 +112,8 @@ class ChildController extends Controller
                         $companion->relationship_name = $rel_name;
                     }
                 }
-                return $companions;
+
+                return response()->json($companions,200);
             }
         }
     }
@@ -226,9 +227,7 @@ class ChildController extends Controller
                         $checkin->social_worker = $social_worker->names . " " . $social_worker->flast_name . " " . $social_worker->mlast_name;
                     }
                 }
-                return response()->json(array(
-                    "data" => $checkins
-                ),404);
+                return response()->json($checkins,200);
             }
         }
     }
