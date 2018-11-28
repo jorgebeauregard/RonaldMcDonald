@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'cors'], function() {
+
+    //Companion 
+    Route::get('/child/checkin/{id}', 'ChildController@getCheckinHistorial');
+    Route::get('/child/checkin/current/{id}', 'ChildController@getCurrentCheckIn');
+    Route::get('/child/companions/{id}', 'ChildController@getCompanions');
     //Child
     Route::post('/child',     'ChildController@create'); //C
     Route::get('/child',      'ChildController@read');   //R
@@ -25,9 +30,6 @@ Route::group(['middleware' => 'cors'], function() {
     Route::put('/child',      'ChildController@update'); //U
     Route::delete('/child',   'ChildController@delete'); //D
  
-    //Companion 
-    Route::get('/child/companions/{id}', 'ChildController@getCompanions');
-
     //Companion
     Route::post('/companion',     'CompanionController@create'); //C
     Route::get('/companion',      'CompanionController@read');   //R

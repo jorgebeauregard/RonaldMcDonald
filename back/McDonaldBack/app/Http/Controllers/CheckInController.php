@@ -138,30 +138,14 @@ class CheckInController extends Controller
                 $checkin->companions = $companions;
 
                 $rooms = [];
-                
+
                 $roomsCheckIn = CheckInRoom::where('check_in_id','=',$checkin->id)->get();
                 
                 foreach($roomsCheckIn as $rci){
                     $rum = Room::find($rci->room_id);
                     $rooms[] = $rum;
                 }
-
                 $checkin->rooms = $rooms;
-
-                //$checkIn = CheckIn::where('child_id','=',$kid->id)->whereNull('check_out_date')->first();
-
-/*
-                $checkinRoom = CheckInRoom::find($checkin->id);
-                if($checkinRoom != null){
-                    $room = Room::find($checkinRoom->room_id);
-                    if($room != null){
-                        $checkin->room = $room;    
-                    }
-                }
- */
-                 
-
-                //$checkInCompanion = Ch
             }
 
 
@@ -170,7 +154,6 @@ class CheckInController extends Controller
             ),200);
         }
         else{
-            
             if ($room == null) {
                 return response()->json(array(
                     "error" => "id ".$request->id." not found"
