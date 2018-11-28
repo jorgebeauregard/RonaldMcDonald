@@ -422,7 +422,7 @@ class ChildrenTableSeeder extends Seeder
             'birthday' => Carbon::parse('2018-07-25'),
             'sex' => "Masculino",
             'scholarship_id' => 2,
-            'address_street' => " Ignacio Morones Prieto",
+            'address_street' => "Ignacio Morones Prieto",
             'address_number' => "1500",
             'neighborhood' => "Nurvas Colonias",
             'locality' => "Monterrey",
@@ -432,6 +432,26 @@ class ChildrenTableSeeder extends Seeder
             'phone_1' => "01 222 169 0184",
             'phone_2' => "",
             'social' => "636-942-9181",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
+           DB::table('children')->insert([
+            'names' => "Jose Carlos",
+            'flast_name' => "Ruiz",
+            'mlast_name' => "Hernandez",
+            'birthday' => Carbon::parse('2013-12-30'),
+            'sex' => "Masculino",
+            'scholarship_id' => 3,
+            'address_street' => "Residencial Arboledas de Zerezotla",
+            'address_number' => "3B",
+            'neighborhood' => "Zerezotla",
+            'locality' => "Cholula",
+            'municipality' => "Puebla",
+            'zip_code' => "72760",
+            'state_id' => 1, //Pue
+            'phone_1' => "01 222 169 0184",
+            'phone_2' => "",
+            'social' => "646-40-6731",
             'zone_type' => "Urbana",
             'min_wage' => "<1"
         ]);
