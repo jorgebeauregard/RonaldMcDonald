@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './../mcdonaldhouselogo.png';
+import {Link} from 'react-router-dom';
 
 class Toolbar extends Component {
     state = { 
@@ -19,7 +20,7 @@ class Toolbar extends Component {
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="container is-fluid">
                 <div className="navbar-brand">
-                    <img className="nav-logo logo" src={logo}/>
+                    <a href="/"><img className="nav-logo logo" src={logo}/></a>
                 
                     <a role="button" className={this.toggleBurger()} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={() => this.setState({ active: !this.state.active })}>
                         <span aria-hidden="true"></span>

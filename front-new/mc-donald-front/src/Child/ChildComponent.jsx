@@ -18,7 +18,6 @@ class ChildComponent extends Component {
         await axios.get(global.globalURL + '/child/' + this.props.match.params.id)
         .then(res => {
             this.setState({child: res.data});
-            console.log(this.state.child);
         })
 
         await axios.get(global.globalURL + '/child/companions/' + this.props.match.params.id).then(res => {
@@ -73,7 +72,7 @@ class ChildComponent extends Component {
                             </div>
                             <div className="column is-12">
                                 <Fade left>
-                                    <CompanionCard/>
+                                    <CompanionCard data={this.state.companions}/>
                                 </Fade>
                             </div>
                         </div>

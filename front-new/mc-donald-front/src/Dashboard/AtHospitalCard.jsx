@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TitleCardSmall from './../General Purpose/TitleCardSmall';
+import {Link} from 'react-router-dom';
 import { global } from './../global';
 import axios from 'axios';
 
@@ -20,7 +21,7 @@ class AtHospitalCard extends Component {
             return(
                 this.state.data.hospital_kids.map(child =>
                     <tr key={child.id}>
-                        <td>{child.names}</td>
+                        <td><Link to={'children/'+child.id}>{child.names} {child.flast_name} {child.mlast_name}</Link></td>
                         <td>{child.room_name}</td>
                         <td><button className="button is-success"><span className="icon is-small"><i className="fas fa-home"></i></span></button></td>
                     </tr>
