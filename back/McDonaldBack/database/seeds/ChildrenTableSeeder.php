@@ -415,6 +415,26 @@ class ChildrenTableSeeder extends Seeder
             'zone_type' => "Urbana",
             'min_wage' => "1"
         ]);
+           DB::table('children')->insert([
+            'names' => "David",
+            'flast_name' => "Vasquez",
+            'mlast_name' => "Montealban",
+            'birthday' => Carbon::parse('2018-07-25'),
+            'sex' => "Masculino",
+            'scholarship_id' => 2,
+            'address_street' => " Ignacio Morones Prieto",
+            'address_number' => "1500",
+            'neighborhood' => "Nurvas Colonias",
+            'locality' => "Monterrey",
+            'municipality' => "Nuevo Leon",
+            'zip_code' => "64710",
+            'state_id' => 23, //Nuevo Leon
+            'phone_1' => "01 222 169 0184",
+            'phone_2' => "",
+            'social' => "636-942-9181",
+            'zone_type' => "Urbana",
+            'min_wage' => "<1"
+        ]);
 
         DB::table('children')->insert([
             'names' => "Enrique",
