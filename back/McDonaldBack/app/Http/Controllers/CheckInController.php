@@ -134,8 +134,24 @@ class CheckInController extends Controller
                 if($social_worker != null){
                     $checkin->social_worker = $social_worker; 
                 }
+                $companions = $checkin->companions()->get();
+                $checkin->companions = $companions;
+
+                $rooms = [];
+                
+                $roomsCheckIn = CheckInRoom::where('check_in_id','=',$checkin->id)->where('active','=',1)->get();
+                
+                foreach($roomsCheckIn as $rci){
+                   $rooms[] = Room::find($rci->room_id);
+                }
 
 
+
+                $checkin->rooms = $rooms;
+
+                //$checkIn = CheckIn::where('child_id','=',$kid->id)->whereNull('check_out_date')->first();
+
+/*
                 $checkinRoom = CheckInRoom::find($checkin->id);
                 if($checkinRoom != null){
                     $room = Room::find($checkinRoom->room_id);
@@ -143,9 +159,8 @@ class CheckInController extends Controller
                         $checkin->room = $room;    
                     }
                 }
-
-                $companions = $checkin->companions()->get();
-                $checkin->companions = $companions;
+ */
+                 
 
                 //$checkInCompanion = Ch
             }
@@ -254,6 +269,19 @@ class CheckInController extends Controller
             "home_kids" => $homeKidsArr
         ),200);
 
+    }
+
+    public function rooms(Request $request){
+        $checkinRooms = CheckInRoom::get();
+        foreach($checkinRooms as $cir){
+            $room = Room::find($cir->room_id);
+            if($room != null){
+                $cir->room = $room;
+            }
+        }
+        return response()->json(array(
+            "data" => $checkinRooms
+        ),200);
     }
 
 }
