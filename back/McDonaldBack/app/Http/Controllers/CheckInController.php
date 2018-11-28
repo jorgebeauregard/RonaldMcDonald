@@ -139,13 +139,12 @@ class CheckInController extends Controller
 
                 $rooms = [];
                 
-                $roomsCheckIn = CheckInRoom::where('check_in_id','=',$checkin->id)->where('active','=',1)->get();
+                $roomsCheckIn = CheckInRoom::where('check_in_id','=',$checkin->id)->get();
                 
                 foreach($roomsCheckIn as $rci){
-                   $rooms[] = Room::find($rci->room_id);
+                    $rum = Room::find($rci->room_id);
+                    $rooms[] = $rum;
                 }
-
-
 
                 $checkin->rooms = $rooms;
 
@@ -258,7 +257,6 @@ class CheckInController extends Controller
         $hospitalCount =  count($hospitalKidsArr);
         //cuantos niños hay en casa 
         $homeCount = count($homeKidsArr);       
-        
 
         return response()->json(array(
             "total_kids" => $totalKids,
@@ -268,7 +266,6 @@ class CheckInController extends Controller
             "hospital_kids" => $hospitalKidsArr,
             "home_kids" => $homeKidsArr
         ),200);
-
     }
 
     public function rooms(Request $request){
