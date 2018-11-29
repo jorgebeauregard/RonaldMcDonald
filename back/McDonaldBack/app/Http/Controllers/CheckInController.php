@@ -217,6 +217,7 @@ class CheckInController extends Controller
     }
 
     public function checkout(Request $request){
+
         $validator = Validator::make($request->all(), [
             "id" => "required|integer",
             "check_out_date" => "required|date"    
@@ -228,15 +229,27 @@ class CheckInController extends Controller
             ),400);
         }
 
-        $checkin = CheckIn::findOrFail($request->id);
+        $checkin = CheckIn::find($request->id);
+        if($checkin == null){
+            return "ID: ".$request->id;
+        }
 
         $checkin->check_out_date = $request->check_out_date;
-
-        $checkin->save();
-
-        CheckInRoom::where('check_in_id', $checkin->id)->update(['active' => 0]);
         
-        return response()->json(array("data" => $checkin),200);
+        $checkin->save();
+        
+        $checkinRooms = CheckInRoom::where('check_in_id', $request->id)->get();
+
+        foreach($checkinRooms as $cir){
+            if($cir->active == 1){
+                $cir->active = 0;
+                $cir->save();
+            }
+        }
+
+        //CheckInRoom::where('check_in_id', $request->id)->update(['active' => 0]);
+        
+        return response()->json(array("data" => $checkinRooms),200);
     }
 
     public function dashboard(Request $request){

@@ -279,7 +279,7 @@ class ChildController extends Controller
                 "error" => "Child with id " .$request->id. " not found"
             ),404);
         }
-        $checkin = CheckIn::where('child_id','=',$child->id)->whereNotNull('check_out_date')->get()->first();
+        $checkin = CheckIn::where('child_id','=',$child->id)->whereNull('check_out_date')->get()->first();
         if($checkin == null){
             return response()->json(array(
                 "error" => "Child with id " .$request->id. " has no active check in"
