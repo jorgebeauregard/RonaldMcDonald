@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Companion;
 use Illuminate\Http\Request;
@@ -28,7 +29,9 @@ class CompanionController extends Controller
             "rent" => "required|numeric",
             "financial_aid" => "required|boolean",
             "monthly_income" => "required|numeric",
-            "remarks" => "string"
+            "remarks" => "string",
+            "child_id" => "required|integer",
+            "relationship_id" => "required|integer"
         ]);
 
         if ($validator->fails()) {
@@ -37,9 +40,11 @@ class CompanionController extends Controller
             ),400);
         }
 
-        $companion = Companion::create($request->all());
+        $companion = Companion::create($request->except('child_id'));
 
         $result = $companion->save();
+
+        DB::table('child_companion')->insert(['child_id' => $request->id, 'companion_id' => $companion->id, 'relationship_id' => $request->relationship_id]);
 
         if(!$result){
             return response()->json(array(
