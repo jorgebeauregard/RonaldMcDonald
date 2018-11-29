@@ -20,6 +20,26 @@
 
         The code uses a FAILFAST design.
 
+        INSTRUCCIONES DE USO E IMPLEMENTACION
+
+        El generador funciona en base a la conección con el beck end en laravel.
+
+        Para recibir el formato de resumen en pdf se debe: 
+
+        Hacer una llamada get al archivo index.php encontrado en la carpeta src.
+
+        los parametros get deben ser:
+
+        inicio = dd-mm-yyyy
+        fin = dd-mm-yyyy
+
+        ej.
+        ... /generador_de_documento/src/? inicio=1-11-2018 & fin=31-12-2018
+
+        El generador mostrará una tabla en pdf con los datos entre als fechas solicitadas,
+        formateará automaticamente entre días o semanas segun sea necesario,
+        con respecto al espacio.
+
     */
     
     //Checa los argumentos.
@@ -126,14 +146,47 @@
             $table[$i] = collapseSum($header,$table[$i]);
         }
         $header = collapse($header,$header);
+    }
 
+    foreach ($table as $i=>$value) 
+    {
+        if(count($value) == 0) continue;
+
+        array_push($table[$i], sum($value));
+    }
+
+
+    /*
+        Final de obtención y parseo de datos.
+        Functions and fpdf class declaration and creation 
+    */
+
+    array_push($header,"TOT");
+
+    function sum($arr)
+    {
+        if(count($arr) == 0)
+        {
+            return 0;
+        }
+
+        $sum = 0; 
+        foreach ($arr as $value) 
+        {
+            if(is_numeric($value))
+            {
+                $sum += $value;
+            }
+        }
+
+        return $sum;
     }
 
     function collapse($base,$colapsable)
     {
         if(count($colapsable) == 0 || count($base) == 0)
         {
-            return null;
+            return array();
         }
 
         $result = array();
@@ -158,7 +211,7 @@
     {
         if(count($colapsable) == 0 || count($base) == 0)
         {
-            return null;
+            return array();
         }
 
         $result = array();
@@ -187,17 +240,25 @@
         function BasicTable($header, $data)
         {
 
-            $max = 250;
+            $max = 260;
             $spacing = $max / count($header);
 
-            $this->SetFont('Arial', 'B', 8);
+            if($spacing < 6)
+            {
+                $this->SetFont('Arial', 'B', 7);
+            }
+            else
+            {
+                $this->SetFont('Arial', 'B', 9);
+            }
+
 
             // Header
             foreach($header as $i=>$col)
             {
                 if($i == 0)
                 {
-                    $this->Cell(28,7,$col,1);
+                    $this->Cell(22,7,$col,1);
                 }else
                 {
                     $this->Cell($spacing,7,$col,1);
@@ -219,7 +280,7 @@
 
                     if($i == 0)
                     {
-                        $this->Cell(28,7,$col,1,0,'C',true);
+                        $this->Cell(22,7,$col,1,0,'C',true);
                     }else
                     {
                         $this->Cell($spacing,7,$col,1,0,'C',true);
