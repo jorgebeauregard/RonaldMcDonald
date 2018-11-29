@@ -18,8 +18,8 @@ class CheckInRoomTableSeeder extends Seeder
         ]);
 
         DB::table('check_in_room')->insert([
-            'check_in_id' => 2,
-            'room_id' => 1,
+            'check_in_id' => 1,
+            'room_id' => 2,
             'active' => true
         ]);
 

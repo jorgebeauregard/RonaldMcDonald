@@ -24,7 +24,7 @@ Route::group(['middleware' => 'cors'], function() {
     Route::get('/child/checkin/current/{id}', 'ChildController@getCurrentCheckIn');
     Route::get('/child/companions/{id}', 'ChildController@getCompanions');
     //Child
-    Route::get('/child/toggleStatus/{id}',     'ChildController@toggleStatus');
+    Route::put('/child/toggleStatus/{id}',     'ChildController@toggleStatus');
 
     Route::post('/child',     'ChildController@create'); //C
     Route::get('/child',      'ChildController@read');   //R
