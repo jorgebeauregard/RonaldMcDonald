@@ -202,7 +202,7 @@ class CheckInController extends Controller
         $activeKids = CheckIn::whereNull('check_out_date')->get(); //obtiene los registros activos (solo debe haber uno por morro)
         //Get ids of kids at home and at hospital
         $homeKidsIds = $activeKids->where('child_status','=','En casa')->pluck('child_id');         
-        $hospitalKidsIds = $activeKids->where('child_status','=','Hospitalizado')->pluck('child_id');
+        $hospitalKidsIds = $activeKids->where('child_status','=','En hospital')->pluck('child_id');
         
         //lista de niños en hospital
         $homeKidsArr = [];
@@ -263,5 +263,4 @@ class CheckInController extends Controller
             "data" => $checkinRooms
         ),200);
     }
-
 }

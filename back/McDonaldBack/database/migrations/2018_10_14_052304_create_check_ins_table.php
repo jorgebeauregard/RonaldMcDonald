@@ -18,7 +18,7 @@ class CreateCheckInsTable extends Migration
             $table->unsignedInteger('child_id');
             $table->date('check_in_date');
             $table->unsignedInteger('hospital_id');
-            $table->enum('child_status', ['En casa', 'Hospitalizado', 'Extra']);
+            $table->enum('child_status', ['En casa', 'En hospital', 'Extra']);
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('diagnosis_id');
             $table->unsignedInteger('treatment_id');
