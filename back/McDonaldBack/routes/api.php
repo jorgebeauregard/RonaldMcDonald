@@ -106,4 +106,7 @@ Route::group(['middleware' => 'cors'], function() {
      Route::put('/checkin/{id}', 'CheckInController@update'); //U
      Route::delete('/checkin',   'CheckInController@delete'); //D
 
+     Route::put('/checkout/{id}', 'CheckInController@checkout');
+
+
  });
