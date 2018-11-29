@@ -3,29 +3,30 @@ import TitleCardSmall from './../General Purpose/TitleCardSmall';
 
 const CurrentCheckInCard = (props) => {
     return (
+        
         <div className="card">
             <div className="card-content">
                 <TitleCardSmall title="Información de estadía actual" background="success"></TitleCardSmall>
                 <div className="columns is-multiline margin-top">
                     <div className="column is-4">
                         <p className="title is-5">Ubicación:</p>
-                        {props.data.data ? (<p className={props.data.data.child_status==("En hospital") ? "subtitle has-text-danger" : "subtitle has-text-success"}>{props.data.data.child_status}</p>) : (<p className="subtitle"></p>)}
+                        {props.data ? (<p className={props.data.child_status==("En hospital") ? "subtitle has-text-danger" : "subtitle has-text-success"}>{props.data.child_status}</p>) : (<p className="subtitle"></p>)}
                     </div>
                     <div className="column is-4">
                         <p className="title is-5">Fecha de ingreso:</p>
-                        {props.data.data ? (<p className="subtitle">{props.data.data.check_in_date}</p>) : <p className="subtitle"></p>}
+                        {props.data ? (<p className="subtitle">{props.data.check_in_date}</p>) : <p className="subtitle"></p>}
                     </div>
                     <div className="column is-4">
                         <p className="title is-5">Doctor:</p>
-                        {props.data.data ? (<p className="subtitle">{props.data.data.doctor}</p>) : <p className="subtitle"></p>}
+                        {props.data ? (<p className="subtitle">{props.data.doctor}</p>) : <p className="subtitle"></p>}
                     </div>
                     <div className="column is-4">
                         <p className="title is-5">Diagnóstico:</p>
-                        {props.data.data ? (<p className="subtitle">{props.data.data.diagnosis}</p>) : <p className="subtitle"></p>}
+                        {props.data ? (<p className="subtitle">{props.data.diagnosis}</p>) : <p className="subtitle"></p>}
                     </div>
                     <div className="column is-4">
                         <p className="title is-5">Tratamiento:</p>
-                        {props.data.data ? (<p className="subtitle">{props.data.data.treatment}</p>) : <p className="subtitle"></p>}
+                        {props.data ? (<p className="subtitle">{props.data.treatment}</p>) : <p className="subtitle"></p>}
                     </div>
                     <div className="column is-4">
                     </div>

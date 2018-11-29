@@ -11,39 +11,17 @@ import CurrentCheckInCard from './CurrentCheckInCard';
 class ChildComponent extends Component {
     state = { 
         child: {},
-        companions: [],
-        checkInHistory: [],
-        currentData: null
     }
 
-    async componentDidMount(){
-        await axios.get(global.globalURL + '/child/' + this.props.match.params.id)
-        .then(res => {
+    async componentDidMount(){  
+        await axios.get(global.globalURL + '/child/' + this.props.match.params.id).then(res => {
             this.setState({child: res.data});
-        })
-
-        await axios.get(global.globalURL + '/child/checkin/current/' + this.props.match.params.id).then(res => {
-            this.setState({currentData: res.data});
-            
         });
-
-        for(var i = 0; i<100000; i++){} //Lo siento tanto
-        
-        await axios.get(global.globalURL + '/child/checkin/' + this.props.match.params.id)
-        .then(res => {
-            this.setState({checkInHistory: res.data});
-        })
-
-        
-        await axios.get(global.globalURL + '/child/companions/' + this.props.match.params.id).then(res => {
-            this.setState({companions: res.data});
-        });
-
-        
+        console.log(this.state.child.checkInHistorial);
     }
 
     render() { 
-        return ( 
+        return (
             <div>
                 <div className="columns margin-top">
                     <div className="column">
@@ -52,23 +30,25 @@ class ChildComponent extends Component {
                         </Fade>                    
                     </div>
                 </div>
-
+                
                 <div className="columns is-multiline">
                     <div className="column is-5">
                         <div className="columns is-multiline">
-                        {this.state.currentData ? 
-                            <div className="column is-12">
+                            {this.state.child.currentCheckIn ? 
+                                <div className="column is-12">
+                                    <Fade left>
+                                        <CurrentCheckInCard data={this.state.child.currentCheckIn}/>
+                                    </Fade>
+                                </div>
+                            :
+                            ""}
+
+                            {<div className="column is-12">
                                 <Fade left>
-                                    <CurrentCheckInCard data={this.state.currentData}/>
+                                    <CompanionCard data={this.state.child.companions}/>
                                 </Fade>
-                            </div>
-                        :
-                        ""}
-                            <div className="column is-12">
-                                <Fade left>
-                                    <CompanionCard data={this.state.companions}/>
-                                </Fade>
-                            </div>
+                            </div>}
+                                
                         </div>
                     </div>
                         
@@ -79,13 +59,12 @@ class ChildComponent extends Component {
                                     <GeneralInformationCard data={this.state.child}/>
                                 </Fade>
                             </div>
-                            <div className="column is-12">
+                            {<div className="column is-12">
                                 <Fade right>
-                                    <VisitHistoryCard data={this.state.checkInHistory}/>
+                                    <VisitHistoryCard data={this.state.child.checkInHistorial}/>
                                 </Fade>
-                            </div>
+                            </div>}
                         </div>
-                        
                     </div>
                     
                 </div>

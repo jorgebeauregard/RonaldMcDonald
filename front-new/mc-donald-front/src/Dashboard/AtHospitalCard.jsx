@@ -12,7 +12,6 @@ class AtHospitalCard extends Component {
     async componentDidMount(){
         await axios.get(global.globalURL + '/dashboard').then(res => {
             this.setState({data: res.data})
-            console.log(this.state.data);
         });
     }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import TitleCardSmall from './../General Purpose/TitleCardSmall';
+import {Link} from 'react-router-dom';
 
 const CompanionCard = (props) => {
-    return (   
+    return (
         <div className="card">
             <div className="card-content">
                 <TitleCardSmall title="Acompañantes" background="danger"></TitleCardSmall>
@@ -15,13 +16,15 @@ const CompanionCard = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.data.map(companion => 
-                            <tr>
+                        {props.data ?
+                            props.data.map(companion => 
+                            <tr key={companion.id}>
                                 <td>{companion.names} {companion.flast_name} {companion.mlast_name}</td>
                                 <td>{companion.relationship_name}</td>
-                                <td><a className="button is-primary"><span className="icon"><i className="fas fa-info"></i></span></a></td>
+                                <td><Link to={'../companion/' + companion.id}><button className="button is-primary"><span className="icon"><i className="fas fa-info"></i></span></button></Link></td>
                             </tr>
-                        )}
+                            )
+                        : <tr></tr>}
                     </tbody>
                 </table>
             </div>

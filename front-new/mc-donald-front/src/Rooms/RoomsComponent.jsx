@@ -93,7 +93,7 @@ class RoomsComponent extends Component {
                 <div className="columns margin-top">
                     <div className="column is-12">
                         <Fade top>
-                            <TitleCard title="Habitaciones" background="primary"></TitleCard>
+                            <TitleCard title="Habitaciones" background="primary" instructions="Elige una habitación vacía para hacer check-in de un niño"></TitleCard>
                         </Fade>
                     </div>
                 </div>

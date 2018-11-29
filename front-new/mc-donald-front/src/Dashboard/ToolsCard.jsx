@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const ToolsCard = () => {
     return ( 
@@ -7,7 +8,7 @@ const ToolsCard = () => {
                 <p className="title is-3">
                     Acciones
                 </p>
-                <a className="button is-warning is-fullwidth is-medium has-text-white is-size-4-mobile">Check-in</a>
+                <Link to="/rooms"><button className="button is-warning is-fullwidth is-medium has-text-white is-size-4-mobile">Check-in</button></Link>
                 <a className="button is-primary is-fullwidth is-medium margin-top-small is-size-4-mobile">Registrar niño</a>
                 <br/>
             </div>
