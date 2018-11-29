@@ -217,13 +217,25 @@ class CheckInController extends Controller
     }
 
     public function checkout(Request $request){
-        $checkin = CheckIn::findOrFail($request->id);
-        $rooms = CheckInRoom::where('check_in_id', $checkin->id)->get();
-        var_dump($rooms);
-        foreach($rooms as $room){
-            $room->active = 0;
-            $room->save();
+        $validator = Validator::make($request->all(), [
+            "id" => "required|integer",
+            "check_out_date" => "required|date"    
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(array(
+                "error" => $validator->failed()
+            ),400);
         }
+
+        $checkin = CheckIn::findOrFail($request->id);
+
+        $checkin->check_out_date = $request->check_out_date;
+
+        $checkin->save();
+
+        CheckInRoom::where('check_in_id', $checkin->id)->update(['active' => 0]);
+        
         return response()->json(array("data" => $checkin),200);
     }
 
