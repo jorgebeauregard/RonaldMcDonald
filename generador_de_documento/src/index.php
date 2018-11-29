@@ -72,7 +72,7 @@
     $headerUnixTime = array();
     $header = array();
 
-    for($i = 0; $i< 10; $i++)
+    for($i = 0; $i< 13; $i++)
     {
         $table[$i] = array();
     }
@@ -84,11 +84,13 @@
     array_push($table[2],"Adultos");
     array_push($table[3],"Total");
     array_push($table[4],"Familias");
-    array_push($table[5],"Lactantes");
-    array_push($table[6],"En hospital");
-    array_push($table[7],"Total con hosp.");
-    array_push($table[8],"Total Masculino");
-    array_push($table[9],"Total Femenino");
+
+    array_push($table[6],"Lactantes");
+    array_push($table[7],"En hospital");
+    array_push($table[8],"Total con hosp.");
+
+    array_push($table[10],"Total Masculino");
+    array_push($table[11],"Total Femenino");
 
     for($i = $startDate; $i <= $endDate; $i += $secondsInADay)
     {
@@ -99,11 +101,13 @@
         array_push($table[2],getCompanions($i));
         array_push($table[3],getChilds($i)+getCompanions($i));
         array_push($table[4],getFamilies($i));
-        array_push($table[5],getLactant($i));
-        array_push($table[6],getHospitalized($i));
-        array_push($table[7],getChilds($i)+getCompanions($i)+getHospitalized($i));
-        array_push($table[8],getMChilds($i)+getMCompanions($i));
-        array_push($table[9],getFChilds($i)+getFCompanions($i));
+        
+        array_push($table[6],getLactant($i));
+        array_push($table[7],getHospitalized($i));
+        array_push($table[8],getChilds($i)+getCompanions($i)+getHospitalized($i));
+       
+        array_push($table[10],getMChilds($i)+getMCompanions($i));
+        array_push($table[11],getFChilds($i)+getFCompanions($i));
     }
 
     //If more than 31 days found enter week view.
@@ -127,6 +131,11 @@
 
     function collapse($base,$colapsable)
     {
+        if(count($colapsable) == 0 || count($base) == 0)
+        {
+            return null;
+        }
+
         $result = array();
         $result[0] = $colapsable[0];
 
@@ -147,6 +156,11 @@
 
     function collapseSum($base,$colapsable)
     {
+        if(count($colapsable) == 0 || count($base) == 0)
+        {
+            return null;
+        }
+
         $result = array();
         $result[0] = $colapsable[0];
 
@@ -176,14 +190,14 @@
             $max = 250;
             $spacing = $max / count($header);
 
-            $this->SetFont('Arial', 'B', 9);
+            $this->SetFont('Arial', 'B', 8);
 
             // Header
             foreach($header as $i=>$col)
             {
                 if($i == 0)
                 {
-                    $this->Cell(30,7,$col,1);
+                    $this->Cell(28,7,$col,1);
                 }else
                 {
                     $this->Cell($spacing,7,$col,1);
@@ -193,14 +207,22 @@
             // Data
             foreach($data as $row)
             {
-                foreach($row as $i=>$col)
+                foreach((array)$row as $i=>$col)
                 {
-                    if($i == 0)
+                    if($row[0] == "Total")
                     {
-                        $this->Cell(30,7,$col,1);
+                        $this->SetFillColor(180,180,180);
                     }else
                     {
-                        $this->Cell($spacing,7,$col,1);
+                        $this->SetFillColor(220,220,220);
+                    }
+
+                    if($i == 0)
+                    {
+                        $this->Cell(28,7,$col,1,0,'C',true);
+                    }else
+                    {
+                        $this->Cell($spacing,7,$col,1,0,'C',true);
                     }
                 }
                 $this->Ln();
