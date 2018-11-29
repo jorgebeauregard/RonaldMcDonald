@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use App\Child;
@@ -237,19 +238,23 @@ class CheckInController extends Controller
         $checkin->check_out_date = $request->check_out_date;
         
         $checkin->save();
-        
-        $checkinRooms = CheckInRoom::where('check_in_id', $request->id)->get();
 
-        foreach($checkinRooms as $cir){
-            if($cir->active == 1){
-                $cir->active = 0;
-                $cir->save();
-            }
-        }
+        DB::table('check_in_rooms')
+            ->where('check_in_id', $checkIn->id)
+            ->update(['active' => 0]);
+        
+        // $checkinRooms = CheckInRoom::where('check_in_id', $request->id)->get();
+
+        // foreach($checkinRooms as $cir){
+        //     if($cir->active == 1){
+        //         $cir->active = 0;
+        //         $cir->save();
+        //     }
+        // }
 
         //CheckInRoom::where('check_in_id', $request->id)->update(['active' => 0]);
         
-        return response()->json(array("data" => $checkinRooms),200);
+        return response()->json(array("data" => $checkin),200);
     }
 
     public function dashboard(Request $request){
