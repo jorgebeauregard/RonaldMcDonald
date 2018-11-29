@@ -6,7 +6,7 @@ use App\Companion;
 use Illuminate\Http\Request;
 use App\Scholarship;
 use App\Occupation;
-
+use Validator;
 class CompanionController extends Controller
 {
     public function create(Request $request){

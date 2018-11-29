@@ -14,7 +14,7 @@ use App\CheckInRoom;
 use App\Room;
 use App\ChildCompanion;
 use App\Relationship;
-
+use Validator;
 use Illuminate\Http\Request;
 
 class ChildController extends Controller
@@ -174,13 +174,7 @@ class ChildController extends Controller
             )
         ),200);
     }
-/*
 
-child/{id}
-child/companions/{id}
-child/checkin/current/{id}
-child/checkin/{id}
-*/
     public function getCompanions(Child $child){
         $companions = $child->companions()->get();
         if($companions == null || (count($companions) == 0)){
@@ -278,4 +272,37 @@ child/checkin/{id}
         }
         return $checkins;
     }
+    public function toggleStatus(Request $request){
+        $child = Child::find($request->id);
+        if($child == null){
+            return response()->json(array(
+                "error" => "Child with id " .$request->id. " not found"
+            ),404);
+        }
+        $checkin = CheckIn::where('child_id','=',$child->id)->whereNotNull('check_out_date')->get()->first();
+        if($checkin == null){
+            return response()->json(array(
+                "error" => "Child with id " .$request->id. " has no active check in"
+            ),404);
+        }
+
+        if($checkin->child_status == "En casa"){
+            $checkin->child_status = "En hospital";
+        }
+        else if($checkin->child_status == "En hospital"){
+            $checkin->child_status = "En casa";
+        }
+        $result = $checkin->save();
+
+        if(!$result){
+            return response()->json(array(
+                "error"=>"could not store data"
+            ),500);
+        }
+
+        return response()->json(array(
+            "data" => $checkin
+        ),200);
+    }
 }
+

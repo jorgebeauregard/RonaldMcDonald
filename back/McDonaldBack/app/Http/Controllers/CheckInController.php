@@ -154,13 +154,56 @@ class CheckInController extends Controller
             ),200);
         }
         else{
-            if ($room == null) {
+            $checkin = CheckIn::find($request->id);
+            if ($checkin == null) {
                 return response()->json(array(
                     "error" => "id ".$request->id." not found"
                 ),404);
             }
             else{
-                return response()->json(array("data" => $room),200);
+                $child = Child::find($checkin->child_id);
+                if($child != null){
+                    $checkin->child = $child; 
+                }
+                
+                $doctor = Doctor::find($checkin->doctor_id);
+                if($doctor != null){
+                    $checkin->doctor = $doctor; 
+                }
+
+                $diagnosis = Diagnosis::find($checkin->diagnosis_id);
+                if($diagnosis != null){
+                    $checkin->diagnosis = $diagnosis; 
+                }
+
+                $treatment = Treatment::find($checkin->treatment_id);
+                if($treatment != null){
+                    $checkin->treatment = $treatment; 
+                }
+
+
+                $diet = Diet::find($checkin->diet_id);
+                if($diet != null){
+                    $checkin->diet = $diet; 
+                }
+
+                $social_worker = SocialWorker::find($checkin->social_worker_id);
+                if($social_worker != null){
+                    $checkin->social_worker = $social_worker; 
+                }
+                $companions = $checkin->companions()->get();
+                $checkin->companions = $companions;
+
+                $rooms = [];
+
+                $roomsCheckIn = CheckInRoom::where('check_in_id','=',$checkin->id)->get();
+                
+                foreach($roomsCheckIn as $rci){
+                    $rum = Room::find($rci->room_id);
+                    $rooms[] = $rum;
+                }
+                $checkin->rooms = $rooms;
+                return response()->json(array("data" => $checkin),200);
             }
         }
     }
@@ -263,4 +306,6 @@ class CheckInController extends Controller
             "data" => $checkinRooms
         ),200);
     }
+
+    
 }
