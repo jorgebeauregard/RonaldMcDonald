@@ -2,7 +2,6 @@ import React from 'react';
 import TitleCardSmall from './../General Purpose/TitleCardSmall';
 
 const VisitHistoryCard = (props) => {
-    console.log(props.data);
     return ( 
         <div className="card">
             <div className="card-content">
@@ -19,14 +18,19 @@ const VisitHistoryCard = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.data.map(checkIn =>
+                                {props.data ? 
+                                
+                                props.data.map(checkIn =>
                                     <tr key={checkIn.id}>
                                         <td>{checkIn.check_in_date}</td>
                                         <td>{checkIn.check_out_date}</td>
                                         <td>{checkIn.doctor}</td>
                                         <td>{checkIn.diagnosis}</td>
                                     </tr>
-                                )}
+                                )
+                                :
+                                <tr></tr>
+                                }
                             </tbody>
                         </table>
                     </div>

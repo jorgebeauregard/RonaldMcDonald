@@ -15,7 +15,6 @@ export default class ChildrenComponent extends Component {
     async componentDidMount(){
         await axios.get(global.globalURL + '/child').then(res => {
             this.setState({children: res.data});
-            console.log(this.state.children);
         });
     }
 
@@ -33,11 +32,11 @@ export default class ChildrenComponent extends Component {
                     <Td column="Info.">
                         <div className="columns">
                             <div className="column">
-                                <Link to={'/children/' + child.id}><a className="button has-background-primary has-text-white" href={'/children/'+ child.id}>
+                                <Link to={'/children/' + child.id}><button className="button has-background-primary has-text-white" href={'/children/'+ child.id}>
                                     <span className="icon is-small">
                                     <i className="fas fa-info"></i>
                                     </span>
-                                </a>
+                                </button>
                                 </Link>
                             </div>
                         </div>    
