@@ -219,6 +219,7 @@ class CheckInController extends Controller
     public function checkout(Request $request){
         $checkin = CheckIn::findOrFail($request->id);
         $rooms = CheckInRoom::where('check_in_id', $checkin->id)->get();
+        var_dump($rooms);
         foreach($rooms as $room){
             $room->active = 0;
             $room->save();
