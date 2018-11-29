@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Companion;
 use Illuminate\Http\Request;
+use App\Scholarship;
+use App\Occupation;
 
 class CompanionController extends Controller
 {
@@ -52,8 +54,21 @@ class CompanionController extends Controller
 
     public function read(Request $request){
         if($request->id == null){
+            $companions = Companion::get();
+
+            foreach($companions as $companion){
+                $scholarship = Scholarship::find($companion->scholarship_id);
+                if($scholarship != null){
+                    $companion->scholarship = $scholarship->name;
+                }
+
+                $occupation = Occupation::find($companion->scholarship_id);
+                if($occupation != null){
+                    $companion->occupation = $occupation->name;
+                }
+            }
             return response()->json(array(
-                "data" => Companion::get()
+                "data" => $companions
             ),200);
         }
         else{
@@ -64,6 +79,23 @@ class CompanionController extends Controller
                 ),404);
             }
             else{
+                /*  
+                    "scholarship_id": 6,
+                    "occupation_id": 1,
+                }
+                }
+                 */
+
+                $scholarship = Scholarship::find($companion->scholarship_id);
+                if($scholarship != null){
+                    $companion->scholarship = $scholarship->name;
+                }
+
+                $occupation = Occupation::find($companion->scholarship_id);
+                if($occupation != null){
+                    $companion->occupation = $occupation->name;
+                }
+
                 return response()->json(array("data" => $companion),200);
             }
         }
