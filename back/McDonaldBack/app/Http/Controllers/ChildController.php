@@ -26,8 +26,19 @@ class ChildController extends Controller
             "mlast_name" => "string",
             "birthday" => "required|date",
             "sex" => "required",
-            "scholarship_id" => "required|integer"
-            
+            "scholarship_id" => "required|integer",
+            "address_street" => "required|string",
+            "address_number" => "required|string",
+            "neighborhood" => "required|string",
+            "locality" => "required|string",
+            "municipality" => "required|string",
+            "zip_code" => "required|string",
+            "state_id" => "required|integer",
+            "phone_1" => "required|string",
+            "phone_2" => "string",
+            "social" => "required",
+            "zone_type" => "required",
+            "min_wage" => "required"    
         ]);
 
         if ($validator->fails()) {
@@ -112,11 +123,56 @@ class ChildController extends Controller
     }
 
     public function update(Request $request){
+        $validator = Validator::make($request->all(), [
+            "names" => "required|string",
+            "flast_name" => "required|string",
+            "mlast_name" => "string",
+            "birthday" => "required|date",
+            "sex" => "required",
+            "scholarship_id" => "required|integer",
+            "address_street" => "required|string",
+            "address_number" => "required|string",
+            "neighborhood" => "required|string",
+            "locality" => "required|string",
+            "municipality" => "required|string",
+            "zip_code" => "required|string",
+            "state_id" => "required|integer",
+            "phone_1" => "required|string",
+            "phone_2" => "string",
+            "social" => "required",
+            "zone_type" => "required",
+            "min_wage" => "required"    
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json(array(
+                "error" => $validator->failed()
+            ),400);
+        }
+
+        $child = Child::findOrFail($request->id);
+  
+        if ($child->update($request->all())) {
+            return response()->json(array("data" => $child),200);
+        } else {
+            return response()->json(array("error"=>"could not store data"),500);
+        }
     }
 
     public function delete(Request $request){
+        $child = Child::findOrFail($request->id);
+        
+        if(!$child->delete()){
+            return response()->json(array(
+                "error"=>"could not delete data"
+            ),500);
+        }
 
+        return response()->json(array(
+            "data" => array(
+                "message" => "ok"
+            )
+        ),200);
     }
 /*
 
