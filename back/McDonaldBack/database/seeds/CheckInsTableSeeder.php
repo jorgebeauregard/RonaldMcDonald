@@ -23,6 +23,7 @@ class CheckInsTableSeeder extends Seeder
             'diet_id' => 3,
             'social_worker_id' => 5,
             're_entry' => false,
+<<<<<<< HEAD
             'check_out_date' => Carbon::parse('2018-11-29'),
             'additional_children' => 2,
             'remarks' => 'Muy mal chico',
@@ -40,40 +41,44 @@ class CheckInsTableSeeder extends Seeder
             'social_worker_id' => 49,
             're_entry' => true,
             'check_out_date' => Carbon::parse('2018-11-29'),
+=======
+            'check_out_date' => null,
+>>>>>>> c65453ebdaeb4272d637af96879d77fb8d4d9017
             'additional_children' => 0,
             'remarks' => 'Muy buen chico',
         ]);
+
         //$table->enum('child_status', ['En casa', 'En hospital', 'Extra']);
         DB::table('check_ins')->insert([
             'child_id' => 2,
-            'check_in_date' => Carbon::parse('2018-11-27'),
+            'check_in_date' => Carbon::parse('2018-11-24'),
             'hospital_id' => 3,
             'child_status' => 'En casa',
-            'doctor_id' => 1,
-            'diagnosis_id' => 1,
-            'treatment_id' => 2,
-            'diet_id' => 3,
-            'social_worker_id' => 5,
+            'doctor_id' => 2,
+            'diagnosis_id' => 2,
+            'treatment_id' => 1,
+            'diet_id' => 2,
+            'social_worker_id' => 4,
             're_entry' => false,
-            'check_out_date' => null,
+            'check_out_date' => Carbon::parse('2018-11-28'),
             'additional_children' => 2,
-            'remarks' => 'Muy mal chico',
+            'remarks' => null,
         ]);
 
         DB::table('check_ins')->insert([
             'child_id' => 3,
-            'check_in_date' => Carbon::parse('2018-11-27'),
-            'hospital_id' => 2,
+            'check_in_date' => Carbon::parse('2018-11-28'),
+            'hospital_id' => 1,
             'child_status' => 'En casa',
             'doctor_id' => 1,
             'diagnosis_id' => 1,
             'treatment_id' => 2,
             'diet_id' => 3,
-            'social_worker_id' => 5,
+            'social_worker_id' => 3,
             're_entry' => false,
             'check_out_date' => null,
-            'additional_children' => 2,
-            'remarks' => 'Muy mal chico',
+            'additional_children' => 1,
+            'remarks' => null,
         ]);
     }
 }

@@ -14,23 +14,17 @@ class CheckInRoomTableSeeder extends Seeder
         DB::table('check_in_room')->insert([
             'check_in_id' => 1,
             'room_id' => 1,
-            'active' => false
+            'active' => true
         ]);
 
         DB::table('check_in_room')->insert([
-            'check_in_id' => 1,
+            'check_in_id' => 2,
             'room_id' => 2,
             'active' => false
         ]);
 
         DB::table('check_in_room')->insert([
             'check_in_id' => 3,
-            'room_id' => 1,
-            'active' => true
-        ]);
-
-        DB::table('check_in_room')->insert([
-            'check_in_id' => 4,
             'room_id' => 2,
             'active' => true
         ]);

@@ -29,5 +29,20 @@ Notas importantes!
 
 --------------------------------------------------------------------------------------------------
 
+Instrucciones de uso e implementación
+
+El generador funciona en base a la conección con el beck end en laravel.
 
 
+Para recibir el formato de resumen en pdf se debe: 
+
+Hacer una llamada get al archivo index.php encontrado en la carpeta src.
+
+los parametros get deben ser:
+
+inicio = dd-mm-yyyy
+fin = dd-mm-yyyy
+
+El generador mostrará una tabla en pdf con los datos entre als fechas solicitadas,
+formateará automaticamente entre días o semanas segun sea necesario,
+con respecto al espacio.

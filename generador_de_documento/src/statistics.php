@@ -175,7 +175,7 @@
         
         foreach( (array)$checkins as $entry)
         {
-            if($entry->child_status != "Hospitalizado")
+            if($entry->child_status != "En hospital")
             {
                 continue;
             }
