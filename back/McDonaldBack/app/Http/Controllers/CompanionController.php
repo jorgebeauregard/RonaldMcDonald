@@ -44,7 +44,7 @@ class CompanionController extends Controller
 
         $result = $companion->save();
 
-        DB::table('child_companion')->insert(['child_id' => $request->id, 'companion_id' => $companion->id, 'relationship_id' => $request->relationship_id]);
+        DB::table('child_companion')->insert(['child_id' => $request->child_id, 'companion_id' => $companion->id, 'relationship_id' => $request->relationship_id]);
 
         if(!$result){
             return response()->json(array(
