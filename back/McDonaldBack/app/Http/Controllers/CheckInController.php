@@ -216,6 +216,16 @@ class CheckInController extends Controller
 
     }
 
+    public function checkout(Request $request){
+        $checkin = CheckIn::findOrFail($request->id);
+        $rooms = CheckInRoom::where('check_in_id', $checkin->id)->get();
+        foreach($rooms as $room){
+            $room->active = 0;
+            $room->save();
+        }
+        return response()->json(array("data" => $checkin),200);
+    }
+
     public function dashboard(Request $request){
         /**
          * lista de niños con check in activo (fecha de salida nula) <- sacar de check in
