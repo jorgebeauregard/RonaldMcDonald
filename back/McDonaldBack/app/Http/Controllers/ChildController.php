@@ -20,7 +20,35 @@ use Illuminate\Http\Request;
 class ChildController extends Controller
 {
     public function create(Request $request){
+        $validator = Validator::make($request->all(), [
+            "names" => "required|string",
+            "flast_name" => "required|string",
+            "mlast_name" => "string",
+            "birthday" => "required|date",
+            "sex" => "required",
+            "scholarship_id" => "required|integer"
+            
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json(array(
+                "error" => $validator->failed()
+            ),400);
+        }
+
+        $child = Child::create($request->all());
+
+        $result = $child->save();
+
+        if(!$result){
+            return response()->json(array(
+                "error"=>"could not store data"
+            ),500);
+        }
+
+        return response()->json(array(
+            "data" => $child
+        ),200);
     }
 
     public function read(Request $request){
