@@ -8,6 +8,8 @@ use App\Doctor;
 use App\Diagnosis;
 use App\Treatment;
 use App\Diet;
+use App\State;
+use App\Scholarship;
 use App\SocialWorker;
 use App\CheckIn;
 use App\CheckInRoom;
@@ -20,6 +22,7 @@ use Illuminate\Http\Request;
 class ChildController extends Controller
 {
     public function create(Request $request){
+        
         $validator = Validator::make($request->all(), [
             "names" => "required|string",
             "flast_name" => "required|string",
@@ -43,14 +46,51 @@ class ChildController extends Controller
 
         if ($validator->fails()) {
             return response()->json(array(
-                "error" => $validator->failed()
-            ),400);
+                "error" => $validator->failed(),
+                "request" => $request
+            ),200);
         }
 
-        $child = Child::create($request->all());
+        $state = State::find($request->state_id);
+        if($state == null){
+            return response()->json(array(
+                "error"=>"state not found with specified id"
+            ),404);
+        }
 
+        $scholarship = Scholarship::find($request->scholarship_id);
+        if($scholarship == null){
+            return response()->json(array(
+                "error"=>"scholarship not found with specified id"
+            ),404);
+        }
+
+
+        $child = Child::create([
+            "names" =>   $request->names, 
+            "flast_name" =>   $request->flast_name, 
+            "mlast_name" =>   $request->mlast_name, 
+            "birthday" =>   $request->birthday, 
+            "sex" =>   "Masculino",
+            "scholarship_id" =>   $request->scholarship_id, 
+            "address_street" =>   $request->address_street, 
+            "address_number" =>   $request->address_number, 
+            "neighborhood" =>   $request->neighborhood, 
+            "locality" =>   $request->locality, 
+            "municipality" =>   $request->municipality, 
+            "zip_code" =>   $request->zip_code, 
+            "state_id" =>   $request->state_id, 
+            "phone_1" =>   $request->phone_1, 
+            "phone_2" =>   $request->phone_2, 
+            "social" =>   "1",
+            "zone_type" =>   "Rural", 
+            "min_wage" =>  "<1"
+        ]);
+
+
+       
         $result = $child->save();
-
+        
         if(!$result){
             return response()->json(array(
                 "error"=>"could not store data"
@@ -303,6 +343,21 @@ class ChildController extends Controller
         return response()->json(array(
             "data" => $checkin
         ),200);
+    }
+
+    public function showData(Request $request){
+        $states = State::get();
+        $scholarships = Scholarship::get();
+        
+        $data = array(
+            "states" => $states,
+            "scholarships" => $scholarships,
+        );
+    
+        return response()->json(array(
+            "data" => $data
+        ),200);
+        
     }
 }
 

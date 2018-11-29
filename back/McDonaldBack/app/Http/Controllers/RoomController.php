@@ -129,26 +129,28 @@ class RoomController extends Controller
 
     public function kids(Request $request){
         $rooms = Room::get();
-
-        
+//active es uno pero checkout date no
         foreach($rooms as $room){
             $roomCheckIns = CheckInRoom::where('room_id','=',$room->id)->where('active','=',1)->get();
-
-
-
             foreach($roomCheckIns as $rci){
                 $checkIn = CheckIn::find($rci->check_in_id);
                 if($checkIn->check_out_date == null){
                     $child = Child::find($checkIn->child_id);
-                    $rci->child_name = $child->names . " " . $child->flast_name . " " . $child->mlast_name;
-                    $rci->child_id = $child->id;
+                    if($child != null){
+                        $rci->child_name = $child->names . " " . $child->flast_name . " " . $child->mlast_name;
+                        $rci->child_id = $child->id;
+                    }
+                    else{
+                        //this dhuld never happen too
+                    }   
+                }
+                else{
+                     //this should never happen
                 }
             }
             $room->roomCheckIns = $roomCheckIns;
         }
 
-
-        
     /*
         foreach($rooms as $room){
             $checkInRoom = CheckInRoom::get()->where('room_id','=',$room->id)->first();

@@ -15,30 +15,30 @@ use App\SocialWorker;
 use App\CheckIn;
 use App\CheckInRoom;
 use App\Room;
+use Carbon\Carbon;
 
 //Nota: Cuando borres check in, desactiva room(solo si es el unico activo)
 //muchos checkinroom pueden tener ACTIVO haciendo referencia a un room_id
 class CheckInController extends Controller
 {
     public function create(Request $request){
-        /* Closed temporarily
-        
         $validator = Validator::make($request->all(), [
-            "name" => "required|string",
             "child_id" => "required|integer",
             //"check_in_date" => "required|", <- ño
             "hospital_id" => "required|integer",
-            "child_status" => "required|string",
+            // "child_status" => "required|string", <--- automatico en casa
             "doctor_id" => "required|integer",
             "diagnosis_id" => "required|integer",
             "treatment_id" => "required|integer",
             "diet_id" => "required|integer",
             "social_worker_id" => "required|integer",
-            "re_entry" => "required|boolean",
+            "room_id" => "required|integer",
+            // "re_entry" => "required|boolean", <---vacio
             //"check_out_date" => "required|", <--null
-            "additional_children" => "required|integer",
-            "remarks" => "required|string",
+            //  "additional_children" => "required|integer", <--- cero
+            // "remarks" => "required|string", <---vacio
         ]);
+        //"room_id" => "required|integer", <--- meter a rooms
 
         if ($validator->fails()) {
             return response()->json(array(
@@ -95,7 +95,49 @@ class CheckInController extends Controller
             ),404);
         }
 
-        */
+        $checkin = CheckIn::create([
+            "child_id" => $child->id,
+            "check_in_date" => Carbon::now(),
+            "hospital_id" => $hospital->id,
+            "child_status" => "En casa",
+            "doctor_id" => $doctor->id,
+            "diagnosis_id" => $diagnosis->id,
+            "treatment_id" => $treatment->id,
+            "diet_id" => $diet->id,
+            "social_worker_id" => $socialWorker->id,
+            "re_entry" => false,
+            "check_out_date" => null,
+            "additional_children" => 0,
+            "remarks" => ""
+        ]);
+
+        $result = $checkin->save();
+
+        if(!$result){
+            return response()->json(array(
+                "error"=>"could not store data"
+            ),500);
+        }
+
+        $room = Room::find($request->room_id);
+
+        $room_checkin = CheckInRoom::create([
+            "check_in_id" => $checkin->id,
+            "room_id" => $room->id,
+            "active" => 1
+        ]);
+
+        $result = $room_checkin->save();
+
+        if(!$result){
+            return response()->json(array(
+                "error"=>"could not store data"
+            ),500);
+        }
+        return response()->json(array(
+            "room" => $room_checkin,
+            "checkin" => $checkin
+        ),200);
 
     }
 
@@ -239,8 +281,8 @@ class CheckInController extends Controller
         
         $checkin->save();
 
-        DB::table('check_in_rooms')
-            ->where('check_in_id', $checkIn->id)
+        DB::table('check_in_room')
+            ->where('check_in_id', $checkin->id)
             ->update(['active' => 0]);
         
         // $checkinRooms = CheckInRoom::where('check_in_id', $request->id)->get();
@@ -346,6 +388,29 @@ class CheckInController extends Controller
         return response()->json(array(
             "data" => $checkinRooms
         ),200);
+    }
+
+    public function showData(Request $request){
+         $hospital = Hospital::get();
+         $doctor = Doctor::get();
+         $diagnosis = Diagnosis::get();
+         $treatment = Treatment::get();
+         $diet = Diet::get();
+         $socialWorker = SocialWorker::get();
+        
+         $data = array(
+            "hospital" => $hospital,
+            "doctor" => $doctor,
+            "diagnosis" => $diagnosis,
+            "treatment" => $treatment,
+            "diet" => $diet,
+            "socialWorker" => $socialWorker
+        );
+
+        return response()->json(array(
+            "data" => $data
+        ),200);
+       
     }
 
     

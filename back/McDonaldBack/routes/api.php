@@ -24,7 +24,8 @@ Route::group(['middleware' => 'cors'], function() {
     Route::get('/child/checkin/current/{id}', 'ChildController@getCurrentCheckIn');
     Route::get('/child/companions/{id}', 'ChildController@getCompanions');
     //Child
-    Route::get('/child/toggleStatus/{id}', 'ChildController@toggleStatus');
+    Route::get('/child/data',   'ChildController@showData');
+    Route::get('/child/toggleStatus/{id}','ChildController@toggleStatus');
 
     Route::post('/child',     'ChildController@create'); //C
     Route::get('/child',      'ChildController@read');   //R
@@ -98,6 +99,7 @@ Route::group(['middleware' => 'cors'], function() {
     
      //Checkin
      Route::get('/dashboard', 'CheckInController@dashboard');
+     Route::get('/checkin/data',   'CheckInController@showData');
      Route::get('/checkin/room', 'CheckInController@rooms');
 
      Route::post('/checkin',     'CheckInController@create'); //C
@@ -106,6 +108,9 @@ Route::group(['middleware' => 'cors'], function() {
      Route::put('/checkin/{id}', 'CheckInController@update'); //U
      Route::delete('/checkin',   'CheckInController@delete'); //D
 
+     
+
      Route::put('/checkout', 'CheckInController@checkout');
+
 
  });

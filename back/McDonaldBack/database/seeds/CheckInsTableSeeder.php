@@ -39,7 +39,7 @@ class CheckInsTableSeeder extends Seeder
             'diet_id' => 2,
             'social_worker_id' => 49,
             're_entry' => true,
-            'check_out_date' => null,
+            'check_out_date' => Carbon::parse('2018-11-29'),
             'additional_children' => 0,
             'remarks' => 'Muy buen chico',
         ]);

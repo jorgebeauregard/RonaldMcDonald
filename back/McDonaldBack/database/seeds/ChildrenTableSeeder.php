@@ -13,6 +13,8 @@ class ChildrenTableSeeder extends Seeder
      */
     public function run()
     {
+        //echo Carbon::createFromDate($year, $month, $day, $tz)."\n";
+        // $names[rand(0,count($names)-1)],
         DB::table('children')->insert([
             'names' => "Jorge Alberto",
             'flast_name' => "Beauregard",
@@ -61,12 +63,17 @@ class ChildrenTableSeeder extends Seeder
         $social = ['1','2','3','4','5','6'];
         $zone = ['Rural', 'Sub-urbana', 'Urbana'];
         $wage = ['<1', '1 a 2', '>2'];
-        for ($i = 0; $i <= 40; $i++) {
+        for ($i = 0; $i <= 40; $i++){
+            $randYear = rand(1995,2017);
+            $randMonth = rand(1,12);
+            $randDay = rand(1,28);
+            $tz = "America/Mexico_City";
+            $randDate = Carbon::createFromDate($randYear,$randMonth,$randDay,$tz);
             DB::table('children')->insert([
                 'names' => $names[rand(0,count($names)-1)],
                 'flast_name' => $apellido[rand(0,count($apellido)-1)],
                 'mlast_name' => $apellido[rand(0,count($apellido)-1)],
-                'birthday' => Carbon::parse('1995-12-30'),
+                'birthday' => $randDate,
                 'sex' => $gender[rand(0,1)],
                 'scholarship_id' => rand(1,9),
                 'address_street' => str_random(10),
