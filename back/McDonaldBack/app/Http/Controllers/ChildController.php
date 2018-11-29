@@ -99,6 +99,13 @@ class ChildController extends Controller
                 $child->transport = $transport;
                 $child->ration = $ration;
 
+                $companions = $this->getCompanions($child);
+                $currentCheckIn = $this->getCurrentCheckIn($child);
+                $checkInHistorial = $this->getCheckinHistorial($child);
+
+                $child->companions = $companions;
+                $child->currentCheckIn = $currentCheckIn;
+                $child->checkInHistorial = $checkInHistorial;
                 return $child;
             }
         }
@@ -111,152 +118,108 @@ class ChildController extends Controller
     public function delete(Request $request){
 
     }
+/*
 
-    public function getCompanions(Request $request){
-        if($request->id == null){
-            return response()->json(array(
-                "error"=>"id absent from request"
-            ),400);
+child/{id}
+child/companions/{id}
+child/checkin/current/{id}
+child/checkin/{id}
+*/
+    public function getCompanions(Child $child){
+        $companions = $child->companions()->get();
+        if($companions == null || (count($companions) == 0)){
+            return null;
         }
-        else{
-            $child = Child::find($request->id);
-            if ($child == null) {
-                return response()->json(array(
-                    "error" => "id ".$request->id." not found"
-                ),404);
-            }
-            else{
-                $companions = $child->companions()->get();
-                foreach($companions as $companion) {
-
-                    $rel = ChildCompanion::get()->where('companion_id','=',$companion->id)->where('child_id','=',$child->id);
-                    if($rel != null){
-                        $rel_name = "";
-                        foreach($rel as $rel1){
-                            $id = $rel1->relationship_id;
-                            $relation = Relationship::find($id);
-                            $rel_name = $relation->name;
-                        }
-                        $companion->relationship_name = $rel_name;
-                    }
+        foreach($companions as $companion) {
+            $rel = ChildCompanion::get()->where('companion_id','=',$companion->id)->where('child_id','=',$child->id);
+            if($rel != null){
+                $rel_name = "";
+                foreach($rel as $rel1){
+                    $id = $rel1->relationship_id;
+                    $relation = Relationship::find($id);
+                    $rel_name = $relation->name;
                 }
-
-                return response()->json($companions,200);
+                $companion->relationship_name = $rel_name;
             }
         }
+        return $companions;   
     }
 
-    public function getCurrentCheckIn(Request $request){
-        if($request->id == null){
-            return response()->json(array(
-                "error"=>"id absent from request"
-            ),400);
+    public function getCurrentCheckIn(Child $child){
+        $checkin = CheckIn::where('child_id','=',$child->id)->whereNull('check_out_date')->get()->first();
+        if($checkin == null){
+            return null; //child not registered
         }
-        else{
-            $child = Child::find($request->id);
-            if ($child == null) {
-                return response()->json(array(
-                    "error" => "id ".$request->id." not found"
-                ),404);
-            }
-            else{
-                $checkin = CheckIn::where('child_id','=',$child->id)->whereNull('check_out_date')->get()->first();
-                if($checkin != null){
-                    $hospital = Hospital::find($checkin->hospital_id);
-                    if($hospital != null){
-                        $checkin->hospital = $hospital->name;
-                    }
-
-                    $doctor = Doctor::find($checkin->doctor_id);
-                    if($doctor != null){
-                        $checkin->doctor = $doctor->names . " " . $doctor->flast_name . " " . $doctor->mlast_name;
-                    }
-
-                    $diagnosis = Diagnosis::find($checkin->diagnosis_id);
-                    if($diagnosis != null){
-                        $checkin->diagnosis = $diagnosis->name;
-                    }
-
-                    $treatment = Treatment::find($checkin->treatment_id);
-                    if($treatment != null){
-                        $checkin->treatment = $treatment->name;
-                    }
-
-                    $diet = Diet::find($checkin->diet_id);
-                    if($diet != null){
-                        $checkin->diet = $diet->name;
-                    }
-
-                    $social_worker = SocialWorker::find($checkin->social_worker_id);
-                    if($social_worker != null){
-                        $checkin->social_worker = $social_worker->names . " " . $social_worker->flast_name . " " . $social_worker->mlast_name;
-                    }
-
-
-                    return response()->json(array(
-                        "data" => $checkin
-                    ),200);
-                }
-                else{
-                    return response()->json(array(
-                        "error" => "Child not currently registered"
-                    ),404);
-                }
-                ////en donde se encuentra(hospital), fecha de ingreso, doctor, diagnostico, tratamiento y boton de checkout
-
-            }
+        $hospital = Hospital::find($checkin->hospital_id);
+        if($hospital != null){
+            $checkin->hospital = $hospital->name;
         }
+
+        $doctor = Doctor::find($checkin->doctor_id);
+        if($doctor != null){
+            $checkin->doctor = $doctor->names . " " . $doctor->flast_name . " " . $doctor->mlast_name;
+        }
+
+        $diagnosis = Diagnosis::find($checkin->diagnosis_id);
+        if($diagnosis != null){
+            $checkin->diagnosis = $diagnosis->name;
+        }
+
+        $treatment = Treatment::find($checkin->treatment_id);
+        if($treatment != null){
+            $checkin->treatment = $treatment->name;
+        }
+
+        $diet = Diet::find($checkin->diet_id);
+        if($diet != null){
+            $checkin->diet = $diet->name;
+        }
+
+        $social_worker = SocialWorker::find($checkin->social_worker_id);
+        if($social_worker != null){
+            $checkin->social_worker = $social_worker->names . " " . $social_worker->flast_name . " " . $social_worker->mlast_name;
+        }
+        return $checkin;
+        
     }
 
-    public function getCheckinHistorial(Request $request){
-        if($request->id == null){
-            return response()->json(array(
-                "error"=>"id absent from request"
-            ),400);
+    public function getCheckinHistorial(Child $child){
+        $checkins = CheckIn::where('child_id','=',$child->id)->whereNotNull('check_out_date')->get();
+        
+        if($checkins == null || (count($checkins) == 0)){
+            return null; //child has no past registeres
         }
-        else{
-            $child = Child::find($request->id);
-            if ($child == null) {
-                return response()->json(array(
-                    "error" => "id ".$request->id." not found"
-                ),404);
+        foreach($checkins as $checkin){
+            $hospital = Hospital::find($checkin->hospital_id);
+            if($hospital != null){
+                $checkin->hospital = $hospital->name;
             }
-            else{
-                $checkins = CheckIn::where('child_id','=',$child->id)->whereNotNull('check_out_date')->get();
 
-                foreach($checkins as $checkin){
-                    $hospital = Hospital::find($checkin->hospital_id);
-                    if($hospital != null){
-                        $checkin->hospital = $hospital->name;
-                    }
+            $doctor = Doctor::find($checkin->doctor_id);
+            if($doctor != null){
+                $checkin->doctor = $doctor->names . " " . $doctor->flast_name . " " . $doctor->mlast_name;
+            }
 
-                    $doctor = Doctor::find($checkin->doctor_id);
-                    if($doctor != null){
-                        $checkin->doctor = $doctor->names . " " . $doctor->flast_name . " " . $doctor->mlast_name;
-                    }
+            $diagnosis = Diagnosis::find($checkin->diagnosis_id);
+            if($diagnosis != null){
+                $checkin->diagnosis = $diagnosis->name;
+            }
 
-                    $diagnosis = Diagnosis::find($checkin->diagnosis_id);
-                    if($diagnosis != null){
-                        $checkin->diagnosis = $diagnosis->name;
-                    }
+            $treatment = Treatment::find($checkin->treatment_id);
+            if($treatment != null){
+                $checkin->treatment = $treatment->name;
+            }
 
-                    $treatment = Treatment::find($checkin->treatment_id);
-                    if($treatment != null){
-                        $checkin->treatment = $treatment->name;
-                    }
+            $diet = Diet::find($checkin->diet_id);
+            if($diet != null){
+                $checkin->diet = $diet->name;
+            }
 
-                    $diet = Diet::find($checkin->diet_id);
-                    if($diet != null){
-                        $checkin->diet = $diet->name;
-                    }
-
-                    $social_worker = SocialWorker::find($checkin->social_worker_id);
-                    if($social_worker != null){
-                        $checkin->social_worker = $social_worker->names . " " . $social_worker->flast_name . " " . $social_worker->mlast_name;
-                    }
-                }
-                return response()->json($checkins,200);
+            $social_worker = SocialWorker::find($checkin->social_worker_id);
+            if($social_worker != null){
+                $checkin->social_worker = $social_worker->names . " " . $social_worker->flast_name . " " . $social_worker->mlast_name;
             }
         }
+        return $checkins;
     }
 }

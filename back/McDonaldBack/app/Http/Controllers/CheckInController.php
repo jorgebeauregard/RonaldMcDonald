@@ -263,5 +263,4 @@ class CheckInController extends Controller
             "data" => $checkinRooms
         ),200);
     }
-
 }
